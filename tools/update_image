@@ -1,7 +1,10 @@
 #!/bin/bash
-
-sudo losetup /dev/loop0 floppy.img
+#$1 - floppy.img
+#$2 - path to the kernel binary ../out/kernel
+#sudo losetup /dev/loop0 ../img/floppy.img
+sudo losetup /dev/loop0 $1
 sudo mount /dev/loop0 /mnt
-sudo cp src/kernel /mnt/kernel
+#sudo cp ../out/kernel /mnt/kernel
+sudo cp $2 /mnt/kernel
 sudo umount /dev/loop0
 sudo losetup -d /dev/loop0
