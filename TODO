@@ -1,3 +1,22 @@
+=======
+ Main
+=======
 1. Reimplement all C files in D
 2. Compile libdruntime.a with newlib
 3. Link kernel with libdruntime.d and remove the _Dmodule_ref kludge
+
+
+================
+ Infrastructure
+================
+1. Directory structure reorg.
+    a. obj/[config] - all intermediates go here
+    b. lib/[config] - all libraries go here
+    c. out - the kernel image is generated here
+    d. img - disk images are kept here
+
+==========
+ REJECTED
+==========
+
+1. Change code in update_image.sh and run_bochs.sh so that root previleges are not required. REASON: This is by design. Non root users cannot mount loopback devices.

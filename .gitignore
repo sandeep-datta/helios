@@ -5,4 +5,4 @@ kernel
 *~
 
 #directories
-toolchain/dmd/backend
+tools/dmd/backend
