@@ -1,0 +1,8 @@
+#files
+*.[oa]
+*.bak
+kernel
+*~
+
+#directories
+toolchain/dmd/backend
