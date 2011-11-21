@@ -3,6 +3,7 @@
 *.bak
 kernel
 *~
+tools/bochsout.txt
 
 #directories
 tools/dmd/backend
