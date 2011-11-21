@@ -6,8 +6,8 @@
 OUT_DIR=../out
 SRC_DIR=.
 
-#List of all object files to generate the kernel image
-_OBJS=boot.o main.o monitor.o kernelMain.o common.o
+#List of all object files required to generate the kernel image
+_OBJS=boot.o main.o monitor.o kernelMain.o common.o console.o
 
 #rewrite the object list so that OUT_DIR is prepended to each obj file name
 OBJS=$(patsubst %,$(OUT_DIR)/%,$(_OBJS))
