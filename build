@@ -1,5 +1,0 @@
-#!/bin/bash
-cd src
-make
-cd ..
-./tools/update_image img/floppy.img out/kernel
