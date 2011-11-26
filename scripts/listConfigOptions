@@ -1,0 +1,42 @@
+#!/usr/bin/python
+import subprocess
+import re
+import shutil
+from pipeline import *
+import os
+import pprint
+
+from os import chdir
+
+def run(*cmd):
+    l=[]
+    for i, x in enumerate(cmd):
+        if i == 0:
+            l.extend(str(x).split())
+        else:
+            l.append(x)
+    
+    #print "l:", l
+    return subprocess.Popen(l, stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()[0].split("\n")
+    
+    
+NLD="/home/sandeepd2/Desktop/Deimos/tools/lib/newlib-src/newlib"
+chdir(NLD)
+options = set()
+
+for fn in run("find . -name *[ch] -type f"):
+
+    if not os.path.exists(fn):
+        continue
+    
+    f = open(fn, "r")
+
+    for line in f:
+        r = re.compile("#(?:if|ifdef|ifndef)[ \t]*defined?[ \t]*([^/\n]*)")
+        m = r.match(line)
+        if m:
+            #print line
+            options.add(m.groups()[0])
+
+
+pprint.pprint(options)

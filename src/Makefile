@@ -17,13 +17,17 @@ OBJS=$(patsubst %,$(OUT_DIR)/%,$(_OBJS))
 # directory of the current file, if appropriate) are searched.
 
 
-CFLAGS=-m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -c
+CFLAGS=-m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -c -g
 CXXFLAGS=$(CFLAGS) -fno-rtti -fno-exceptions
-#LDFLAGS=-melf_i386 --oformat=elf32-i386 -Tlink.ld ../toolchain/druntime/lib/libdruntime.a
-LDFLAGS=-melf_i386 --oformat=elf32-i386 -Tlink.ld
+
+LDFLAGS=-melf_i386 --oformat=elf32-i386 -Tlink.ld -L../lib -L../lib/newlib/lib
+#LIBS=-lkruntime -lc -lm
+
+LIBS=-lkruntime
+
 ASFLAGS=-felf
 #DFLAGS=-m32 -noboundscheck -nofloat -c
-DFLAGS=-m32 -c
+DFLAGS=-m32 -c -g
 
 #OUT_DIR must be present first, required object files should be generated next. 
 #Lastly all obj files should be linked together
@@ -32,8 +36,9 @@ all: $(OUT_DIR)/ $(OBJS) link
 clean:
 	-rm $(OUT_DIR)/*.o $(OUT_DIR)/kernel
 
+#ld $(LDFLAGS) -o $(OUT_DIR)/kernel $(OBJS) ../tools/lib/kruntime/lib/libdruntime.a ../tools/lib/newlib/lib/32/libc.a ../tools/lib/newlib/lib/32/libm.a
 link:
-	ld $(LDFLAGS) -o $(OUT_DIR)/kernel $(OBJS)
+	ld $(LDFLAGS) -o $(OUT_DIR)/kernel $(OBJS) $(LIBS)
 
 #Make OUT_DIR if it does not exist already
 #note the / at the end of the following prerequisite

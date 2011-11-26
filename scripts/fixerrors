@@ -1,0 +1,107 @@
+import subprocess
+import re
+import shutil
+from pipeline import *
+import os
+from os import chdir
+
+
+KRTD="/home/sandeepd2/Desktop/Deimos/tools/lib/kruntime"
+
+SRCD= {
+    "/home/sandeepd2/Source/osdev/Deimos/tools/lib/newlib/" : {"prefix" : ""},
+    "/home/sandeepd2/Source/osdev/gcc/build-gcc/gcc/include/" : {"prefix" : "libgcc/include" }
+}
+
+
+
+def getTargetDir(filePath):
+    print "filePath:", filePath
+    for d in SRCD.keys():
+        if filePath.startswith(d):
+            relPath = os.path.join(SRCD[d]["prefix"], filePath[len(d):])
+            return os.path.dirname(os.path.join(KRTD, relPath))
+
+def run(*cmd):
+    l=[]
+    for i, x in enumerate(cmd):
+        if i == 0:
+            l.extend(str(x).split())
+        else:
+            l.append(x)
+    
+    return subprocess.Popen(l, stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()[0].split("\n")
+
+
+def getMissingFiles():
+    regexMissingFile = re.compile(".*fatal error: (.*): No such file or directory")
+    missingFiles = []
+    for line in run("make -f posix-bare.mak"):
+        m = regexMissingFile.match(line)
+        
+        if m is not None:
+            print "Make file error:", line
+            missingFiles.append(m.groups()[0])
+    
+    return missingFiles
+    
+
+
+while True:
+    #print "Entering:", KRTD
+    chdir(KRTD)
+
+    #Create a list of missing files
+    missingFiles = getMissingFiles()
+
+    if len(missingFiles) == 0:
+        break
+        
+    print "Missing files: ", missingFiles
+
+    #print "Entering:", NLD
+
+    files = []
+    for d in SRCD.keys():
+        files.extend(run("find " + d))
+
+    #print files
+
+    chosenSubst = {}
+
+    for mf in missingFiles:
+        subst = files | grep("/"+ mf + "$") | tuple
+        
+        
+        if len(subst) == 0:
+            print "ERROR: could not find file - ", "/"+ mf + "$"
+            continue
+        
+        if(len(subst) > 1):
+            print "Please choose substitute file from :-"
+            for i, s in enumerate(subst):
+                print i+1, ". ", s
+            
+            inp = int(raw_input())
+            chosenSubst[mf] = subst[inp - 1]
+        else:
+            chosenSubst[mf] = subst[0]
+
+    for orig, subst in chosenSubst.items():
+        #print "shutil.copytree("+os.path.join(NLD , subst)+", "+KRTD+")"
+        #src=os.path.join(NLD , subst)
+        
+        destDir = getTargetDir(subst)
+        
+        print "destDir:", destDir
+        
+        if not os.path.exists(destDir):
+            print "Making dir: ", destDir
+            os.makedirs(destDir)
+        
+        print "Copying file: %s to %s" % (subst, destDir) 
+        shutil.copy(subst, destDir)
+    
+    print ""
+
+print "Done!"

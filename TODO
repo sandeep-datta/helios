@@ -1,11 +1,11 @@
 =======
  Main
 =======
-
+- upgrade kruntime to dmd v2.056
 - Compile libdruntime.a with newlib
 - Link kernel with libdruntime.d and remove the _Dmodule_ref kludge
 - Reimplement all C files in D
-
+- Once we have a working bare kernel using druntime + newlib rework the druntime to remove the need for an underlying C library.
 
 ================
  Infrastructure

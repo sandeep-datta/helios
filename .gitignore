@@ -4,6 +4,10 @@
 kernel
 *~
 tools/bochsout.txt
+*.sconsign.dblite
 
 #directories
-tools/dmd/backend
+tools/dmd/backend/
+lib/Bkup/
+out/
+img/

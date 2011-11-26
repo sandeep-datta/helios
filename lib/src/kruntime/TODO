@@ -1,0 +1,1 @@
+Place holder folder for the kernel specific version of the druntime library. The druntime library needs to be trimmed for use in a minimal kernel (maybe even a microkernel)

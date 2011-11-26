@@ -1,0 +1,77 @@
+#!/usr/bin/python
+import subprocess
+import re
+import shutil
+from pipeline import *
+import os
+from os import chdir
+
+import pprint
+
+BUILDD="/home/sandeepd2/Source/osdev/Deimos/src"
+NLD="/home/sandeepd2/Source/osdev/Deimos/lib/src/newlib"
+KRTD="/home/sandeepd2/Source/osdev/Deimos/lib"
+
+def run(*cmd):
+    l=[]
+    for i, x in enumerate(cmd):
+        if i == 0:
+            l.extend(str(x).split())
+        else:
+            l.append(x)
+    
+    #print "l:", l
+    return subprocess.Popen(l, stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()[0].split("\n")
+    
+
+def getMissingRefs():
+    regexMissingRef = re.compile("(.*):.*: undefined reference to \`(.*)\'")
+    missingRefs = set()
+    for line in run("make"):
+        m = regexMissingRef.match(line)
+        
+        if m is not None:
+            #print "Make file error:", line
+            #missingRefs.append(m.groups())
+            missingRefs.add(m.groups()[1])
+    return missingRefs
+    
+    
+
+
+chdir(BUILDD)
+missingRefs = getMissingRefs()
+
+for ref in missingRefs:
+    demangledName = run("./demangle", ref)[0]
+    if demangledName == ref:
+        print "Missing ref: ", ref
+    else:
+        print "Missing ref: ", run("./demangle", ref)[0], " (", ref, ")"
+
+chdir(NLD)
+
+#find . -name "*.c*" | xargs grep "_DEFUN[ ]*(memcpy"
+#try to find C implementation files for the missing symbols if possible
+
+for symb in missingRefs:
+    r1 = re.compile("_DEFUN[ ]*\(" + symb)
+    r2 = re.compile("weak_alias[ ]*\(.*"+symb)
+    for fname in run("find . -name *.c*"):
+        if os.path.exists(fname):
+            f = open(fname, 'r')
+            s = f.read()
+            if r1.search(s) or r2.search(s):
+                print "Symbol: \"" + symb + "\" found in: ", os.path.join(NLD, fname)
+
+
+##try to locate the symbol in the kruntime library and display corresponding record
+#chdir(KRTD)
+#print "\nTrying to locate missing items in libkruntime.a\n"
+#for symb in missingRefs:
+    #rsymb = re.compile(".*%s.*" % symb)
+    #rund = re.compile(".*\*UND\*.*")
+    #for line in run("objdump -t libkruntime.a"):
+        #if rsymb.match(line) and not rund.match(line):
+            #print line
+
