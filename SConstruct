@@ -11,7 +11,7 @@
 import os
 
 def SymLink(target, source, env):
-    os.symlink(str(source[0]), str(target[0]))
+    os.symlink(os.path.abspath(str(source[0])), os.path.abspath(str(target[0])))
 
 env32 = Environment(CFLAGS='-m32', DFLAGS='-m32', LINKFLAGS='-m32', LIBS=['rt'])
 
@@ -21,6 +21,7 @@ Export('env32')
 
 sub_projects = {
     "src/SConscript" : "",
+    "lib/SConscript" : "lib",
 }
 
 for project in sub_projects.keys():
