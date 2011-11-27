@@ -7,7 +7,8 @@ OUT_DIR=../out
 SRC_DIR=.
 
 #List of all object files required to generate the kernel image
-_OBJS=boot.o main.o monitor.o kernelMain.o common.o console.o
+#_OBJS=boot.o main.o monitor.o kernelMain.o common.o console.o
+_OBJS=boot.o main.o monitor.o kernelMain.o common.o
 
 #rewrite the object list so that OUT_DIR is prepended to each obj file name
 OBJS=$(patsubst %,$(OUT_DIR)/%,$(_OBJS))
@@ -23,7 +24,7 @@ CXXFLAGS=$(CFLAGS) -fno-rtti -fno-exceptions
 LDFLAGS=-melf_i386 --oformat=elf32-i386 -Tlink.ld -L../lib -L../lib/newlib/lib
 #LIBS=-lkruntime -lc -lm
 
-LIBS=-lkruntime
+#LIBS=-lkruntime
 
 ASFLAGS=-felf
 #DFLAGS=-m32 -noboundscheck -nofloat -c
@@ -51,8 +52,8 @@ $(OUT_DIR)/:
 $(OUT_DIR)/%.o: $(SRC_DIR)/%.c
 	gcc -o $@ $< $(CFLAGS) 
 
-#make .o files from .s files
-$(OUT_DIR)/%.o: $(SRC_DIR)/%.s
+#make .o files from .nasm files
+$(OUT_DIR)/%.o: $(SRC_DIR)/%.nasm
 	nasm -o $@ $< $(ASFLAGS)
 
 #make .o files from .d files

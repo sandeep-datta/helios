@@ -1,7 +1,7 @@
 =======
  Main
 =======
-- upgrade kruntime to dmd v2.056
+- upgrade kruntime to dmd v2.056 (please remember to use the same version of phobos when trying to compile phobos for the kernel)
 - Compile libdruntime.a with newlib
 - Link kernel with libdruntime.d and remove the _Dmodule_ref kludge
 - Reimplement all C files in D

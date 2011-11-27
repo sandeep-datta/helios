@@ -1,3 +1,12 @@
 #!/bin/bash
 
 export PATH=$PWD/tools:$PATH
+export DEIMOS_BASE=$PWD
+
+run(){
+    qemu -cdrom $DEIMOS_BASE/img/deimos.iso
+}
+
+updateiso(){
+    genisoimage -input-charset default -R -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -boot-info-table -o "$DEIMOS_BASE/img/deimos.iso" "$DEIMOS_BASE/rootfs"
+}

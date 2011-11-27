@@ -1,0 +1,7 @@
+Import("env32")
+
+objs = []
+
+objs.extend()
+
+StaticLibrary("kruntime", objs)

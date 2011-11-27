@@ -16,8 +16,8 @@ class Console
     public static void clear()
     {
        // Make an attribute byte for the default colours
-       uint8 attributeByte = (0 /*black*/ << 4) | (15 /*white*/ & 0x0F);
-       uint16 blank = 0x20 /* space */ | (attributeByte << 8);
+       uint8 attributeByte = (0 << 4) | (15 & 0x0F);//black|white
+       uint16 blank = 0x20  | (attributeByte << 8); //0x20 = space
 
        
        for (int i = 0; i < 80*25; i++)
