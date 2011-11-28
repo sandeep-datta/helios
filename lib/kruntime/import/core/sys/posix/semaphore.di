@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/semaphore.d'
+// D import file generated from 'src\core\sys\posix\semaphore.d'
 module core.sys.posix.semaphore;
 private import core.sys.posix.config;
 

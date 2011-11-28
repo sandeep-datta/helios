@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/runtime.d'
+// D import file generated from 'src\core\runtime.d'
 module core.runtime;
 private 
 {
@@ -23,6 +23,8 @@ private
     extern (C) void* rt_loadLibrary(in char[] name);
 
     extern (C) bool rt_unloadLibrary(void* ptr);
+
+    extern (C) void* thread_stackBottom();
 
     extern (C) string[] rt_args();
 

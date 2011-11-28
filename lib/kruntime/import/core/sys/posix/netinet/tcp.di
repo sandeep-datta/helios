@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/netinet/tcp.d'
+// D import file generated from 'src\core\sys\posix\netinet\tcp.d'
 module core.sys.posix.netinet.tcp;
 private import core.sys.posix.config;
 

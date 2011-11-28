@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/windows/threadaux.d'
+// D import file generated from 'src\core\sys\windows\threadaux.d'
 module core.sys.windows.threadaux;
 version (Windows)
 {

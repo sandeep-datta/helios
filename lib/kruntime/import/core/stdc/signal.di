@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/signal.d'
+// D import file generated from 'src\core\stdc\signal.d'
 module core.stdc.signal;
 extern (C) 
 {

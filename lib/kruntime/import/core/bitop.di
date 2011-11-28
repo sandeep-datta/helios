@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/bitop.d'
+// D import file generated from 'src\core\bitop.d'
 module core.bitop;
 nothrow 
 {

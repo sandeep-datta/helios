@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/wctype.d'
+// D import file generated from 'src\core\stdc\wctype.d'
 module core.stdc.wctype;
 public import core.stdc.wchar_;
 

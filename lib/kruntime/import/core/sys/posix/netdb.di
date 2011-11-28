@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/netdb.d'
+// D import file generated from 'src\core\sys\posix\netdb.d'
 module core.sys.posix.netdb;
 private import core.sys.posix.config;
 

@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/demangle.d'
+// D import file generated from 'src\core\demangle.d'
 module core.demangle;
 debug (trace)
 {
@@ -79,6 +79,7 @@ return a.length && b.ptr >= a.ptr && b.ptr + b.length <= a.ptr + a.length;
     char[] shift(const(char)[] val);
     char[] append(const(char)[] val);
     char[] put(const(char)[] val);
+    char[] putAsHex(size_t val, int width = 0);
     void pad(const(char)[] val);
     void silent(lazy void dg);
     char tok();
@@ -116,7 +117,7 @@ yes,
 }
     char[] parseTypeFunction(char[] name = null, IsDelegate isdg = IsDelegate.no);
     void parseValue(char[] name = null, char type = '\x00');
-    void putIntegerValue(char[] name = null, char type = '\x00');
+    void parseIntegerValue(char[] name = null, char type = '\x00');
     void parseTemplateArgs();
     void parseTemplateInstanceName();
     bool mayBeTemplateInstanceName();

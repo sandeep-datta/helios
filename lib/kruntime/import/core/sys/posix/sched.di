@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/sched.d'
+// D import file generated from 'src\core\sys\posix\sched.d'
 module core.sys.posix.sched;
 private import core.sys.posix.config;
 

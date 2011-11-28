@@ -1,8 +1,19 @@
-// D import file generated from 'src/core/thread.d'
+// D import file generated from 'src\core\thread.d'
 module core.thread;
 public import core.time;
 
 version = StackGrowsDown;
+version (Posix)
+{
+    alias core.sys.posix.unistd.getpid getpid;
+}
+else
+{
+    version (Windows)
+{
+    alias core.sys.windows.windows.GetCurrentProcessId getpid;
+}
+}
 class ThreadException : Exception
 {
     this(string msg, string file = __FILE__, size_t line = __LINE__, Throwable next = null)
@@ -508,6 +519,8 @@ extern (C) void thread_scanAll(scanAllThreadsFn scan, void* curStackTop = null);
 extern (C) void thread_processGCMarks();
 
 void[] thread_getTLSBlock();
+extern (C) void* thread_stackBottom();
+
 class ThreadGroup
 {
     final Thread create(void function() fn);
@@ -531,7 +544,7 @@ private
 {
     version (Windows)
 {
-    version = AsmX86_Win32;
+    version = AsmX86_Windows;
 }
 else
 {
@@ -549,10 +562,18 @@ else
 {
     version (D_InlineAsm_X86_64)
 {
+    version (Windows)
+{
+    version = AsmX86_64_Windows;
+    version = AlignFiberStackTo16Byte;
+}
+else
+{
     version (Posix)
 {
     version = AsmX86_64_Posix;
     version = AlignFiberStackTo16Byte;
+}
 }
 }
 else
@@ -570,7 +591,7 @@ else
 {
     import core.sys.posix.unistd;
     import core.sys.posix.sys.mman;
-    version (AsmX86_Win32)
+    version (AsmX86_Windows)
 {
 }
 else
@@ -580,7 +601,7 @@ else
 }
 else
 {
-    version (AsmPPC_Posix)
+    version (AsmX86_64_Windows)
 {
 }
 else
@@ -590,7 +611,13 @@ else
 }
 else
 {
+    version (AsmPPC_Posix)
+{
+}
+else
+{
     import core.sys.posix.ucontext;
+}
 }
 }
 }
@@ -617,7 +644,7 @@ else
 }
 class Fiber
 {
-    this(void function() fn, size_t sz = PAGESIZE)
+    this(void function() fn, size_t sz = PAGESIZE * 4)
 in
 {
 assert(fn);
@@ -630,7 +657,7 @@ m_state = State.HOLD;
 allocStack(sz);
 initStack();
 }
-    this(void delegate() dg, size_t sz = PAGESIZE)
+    this(void delegate() dg, size_t sz = PAGESIZE * 4)
 in
 {
 assert(dg);

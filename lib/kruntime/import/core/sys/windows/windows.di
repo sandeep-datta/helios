@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/windows/windows.d'
+// D import file generated from 'src\core\sys\windows\windows.d'
 module core.sys.windows.windows;
 extern (Windows) 
 {
@@ -50,6 +50,7 @@ extern (Windows)
     alias int INT;
     alias uint UINT;
     alias uint* PUINT;
+    alias size_t SIZE_T;
     version (Win64)
 {
     alias long INT_PTR;
@@ -675,14 +676,14 @@ FILE_GENERIC_EXECUTE = cast(int)(STANDARD_RIGHTS_EXECUTE | FILE_READ_ATTRIBUTES 
     UINT LocalShrink(HLOCAL hMem, UINT cbNewSize);
     UINT LocalCompact(UINT uMinFree);
     BOOL FlushInstructionCache(HANDLE hProcess, LPCVOID lpBaseAddress, DWORD dwSize);
-    LPVOID VirtualAlloc(LPVOID lpAddress, DWORD dwSize, DWORD flAllocationType, DWORD flProtect);
-    BOOL VirtualFree(LPVOID lpAddress, DWORD dwSize, DWORD dwFreeType);
-    BOOL VirtualProtect(LPVOID lpAddress, DWORD dwSize, DWORD flNewProtect, PDWORD lpflOldProtect);
-    DWORD VirtualQuery(LPCVOID lpAddress, PMEMORY_BASIC_INFORMATION lpBuffer, DWORD dwLength);
-    LPVOID VirtualAllocEx(HANDLE hProcess, LPVOID lpAddress, DWORD dwSize, DWORD flAllocationType, DWORD flProtect);
-    BOOL VirtualFreeEx(HANDLE hProcess, LPVOID lpAddress, DWORD dwSize, DWORD dwFreeType);
-    BOOL VirtualProtectEx(HANDLE hProcess, LPVOID lpAddress, DWORD dwSize, DWORD flNewProtect, PDWORD lpflOldProtect);
-    DWORD VirtualQueryEx(HANDLE hProcess, LPCVOID lpAddress, PMEMORY_BASIC_INFORMATION lpBuffer, DWORD dwLength);
+    LPVOID VirtualAlloc(LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
+    BOOL VirtualFree(LPVOID lpAddress, SIZE_T dwSize, DWORD dwFreeType);
+    BOOL VirtualProtect(LPVOID lpAddress, SIZE_T dwSize, DWORD flNewProtect, PDWORD lpflOldProtect);
+    SIZE_T VirtualQuery(LPCVOID lpAddress, PMEMORY_BASIC_INFORMATION lpBuffer, SIZE_T dwLength);
+    LPVOID VirtualAllocEx(HANDLE hProcess, LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
+    BOOL VirtualFreeEx(HANDLE hProcess, LPVOID lpAddress, SIZE_T dwSize, DWORD dwFreeType);
+    BOOL VirtualProtectEx(HANDLE hProcess, LPVOID lpAddress, SIZE_T dwSize, DWORD flNewProtect, PDWORD lpflOldProtect);
+    SIZE_T VirtualQueryEx(HANDLE hProcess, LPCVOID lpAddress, PMEMORY_BASIC_INFORMATION lpBuffer, SIZE_T dwLength);
 }
     struct SYSTEMTIME
 {
@@ -705,6 +706,14 @@ FILE_GENERIC_EXECUTE = cast(int)(STANDARD_RIGHTS_EXECUTE | FILE_READ_ATTRIBUTES 
     SYSTEMTIME DaylightDate;
     LONG DaylightBias;
 }
+    struct REG_TZI_FORMAT
+{
+    LONG Bias;
+    LONG StandardBias;
+    LONG DaylightBias;
+    SYSTEMTIME StandardDate;
+    SYSTEMTIME DaylightDate;
+}
     enum 
 {
 TIME_ZONE_ID_UNKNOWN = 0,
@@ -726,6 +735,8 @@ TIME_ZONE_ID_DAYLIGHT = 2,
     export BOOL SetLocalTime(SYSTEMTIME* lpSystemTime);
 
     export BOOL SystemTimeToTzSpecificLocalTime(TIME_ZONE_INFORMATION* lpTimeZoneInformation, SYSTEMTIME* lpUniversalTime, SYSTEMTIME* lpLocalTime);
+
+    export BOOL TzSpecificLocalTimeToSystemTime(TIME_ZONE_INFORMATION* lpTimeZoneInformation, SYSTEMTIME* lpLocalTime, SYSTEMTIME* lpUniversalTime);
 
     export DWORD GetTimeZoneInformation(TIME_ZONE_INFORMATION* lpTimeZoneInformation);
 
@@ -1944,11 +1955,11 @@ return CreateWindowExA(0,lpClassName,lpWindowName,dwStyle,X,Y,nWidth,nHeight,hWn
 
     export BOOL SetMailslotInfo(HANDLE hMailslot, DWORD lReadTimeout);
 
-    export LPVOID MapViewOfFile(HANDLE hFileMappingObject, DWORD dwDesiredAccess, DWORD dwFileOffsetHigh, DWORD dwFileOffsetLow, DWORD dwNumberOfBytesToMap);
+    export LPVOID MapViewOfFile(HANDLE hFileMappingObject, DWORD dwDesiredAccess, DWORD dwFileOffsetHigh, DWORD dwFileOffsetLow, SIZE_T dwNumberOfBytesToMap);
 
-    export LPVOID MapViewOfFileEx(HANDLE hFileMappingObject, DWORD dwDesiredAccess, DWORD dwFileOffsetHigh, DWORD dwFileOffsetLow, DWORD dwNumberOfBytesToMap, LPVOID lpBaseAddress);
+    export LPVOID MapViewOfFileEx(HANDLE hFileMappingObject, DWORD dwDesiredAccess, DWORD dwFileOffsetHigh, DWORD dwFileOffsetLow, SIZE_T dwNumberOfBytesToMap, LPVOID lpBaseAddress);
 
-    export BOOL FlushViewOfFile(LPCVOID lpBaseAddress, DWORD dwNumberOfBytesToFlush);
+    export BOOL FlushViewOfFile(LPCVOID lpBaseAddress, SIZE_T dwNumberOfBytesToFlush);
 
     export BOOL UnmapViewOfFile(LPCVOID lpBaseAddress);
 

@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/string.d'
+// D import file generated from 'src\core\stdc\string.d'
 module core.stdc.string;
 private import core.stdc.stddef;
 

@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/memory.d'
+// D import file generated from 'src\core\memory.d'
 module core.memory;
 private 
 {
@@ -79,6 +79,7 @@ gc_minimize();
 
     enum BlkAttr : uint
 {
+NONE = 0,
 FINALIZE = 1,
 NO_SCAN = 2,
 NO_MOVE = 4,

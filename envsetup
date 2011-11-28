@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH=$PWD/tools:$PATH
+export PATH=$PWD/tools:$PWD/scripts:$PATH
 export DEIMOS_BASE=$PWD
 
 run(){

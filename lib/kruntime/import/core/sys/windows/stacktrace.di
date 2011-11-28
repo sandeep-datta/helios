@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/windows/stacktrace.d'
+// D import file generated from 'src\core\sys\windows\stacktrace.d'
 module core.sys.windows.stacktrace;
 import core.demangle;
 import core.runtime;
@@ -20,7 +20,7 @@ MAX_MODULE_NAME32 = 255,
 TH32CS_SNAPMODULE = 8,
 MAX_NAMELEN = 1024,
 }
-extern (C) 
+extern (Windows) 
 {
     alias HANDLE function(DWORD dwFlags, DWORD th32ProcessID) CreateToolhelp32SnapshotFunc;
     alias BOOL function(HANDLE hSnapshot, MODULEENTRY32* lpme) Module32FirstFunc;

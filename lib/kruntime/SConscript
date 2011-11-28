@@ -1,7 +1,15 @@
-Import("env32")
+import os
+from os.path import join, splitext
+from pprint import pprint
+
+Import("env32 env32_ut")
+
+#Core modules
+#GC Modules
+#rt
+
+#prepare imports first
 
 objs = []
-
-objs.extend()
-
-StaticLibrary("kruntime", objs)
+objs.extend(env32.Object(Glob("src/*/*.d")))
+env32.StaticLibrary("kruntime", objs)

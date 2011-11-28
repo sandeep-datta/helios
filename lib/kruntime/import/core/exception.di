@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/exception.d'
+// D import file generated from 'src\core\exception.d'
 module core.exception;
 import core.stdc.stdio;
 private 
@@ -66,6 +66,18 @@ return msg ? super.toString() : "Memory allocation failed";
 }
 
 }
+class InvalidMemoryOperationError : Error
+{
+    this(string file = __FILE__, size_t line = __LINE__, Throwable next = null)
+{
+super("Invalid memory operation",file,line,next);
+}
+    override string toString()
+{
+return msg ? super.toString() : "Invalid memory operation";
+}
+
+}
 class SwitchError : Error
 {
     this(string file = __FILE__, size_t line = __LINE__, Throwable next = null)
@@ -103,6 +115,8 @@ extern (C) void onFinalizeError(ClassInfo info, Exception e, string file = __FIL
 extern (C) void onHiddenFuncError(Object o);
 
 extern (C) void onOutOfMemoryError();
+
+extern (C) void onInvalidMemoryOperationError();
 
 extern (C) void onSwitchError(string file = __FILE__, size_t line = __LINE__);
 

@@ -31,6 +31,8 @@ MODEL=32
 #DFLAGS=-m$(MODEL) -O -release -inline -nofloat -w -d -Isrc -Iimport
 #UDFLAGS=-m$(MODEL) -O -release -nofloat -w -d -Isrc -Iimport
 
+#DMD -w enable warnings, -d allow deprecated syntax -I where to look for imports
+
 DFLAGS=-m$(MODEL) -g -release -inline -nofloat -w -d -Isrc -Iimport
 UDFLAGS=-m$(MODEL) -g -release -nofloat -w -d -Isrc -Iimport
 
@@ -532,8 +534,13 @@ $(OBJDIR)/threadasm.o : src/core/threadasm.S
 
 ################### Library generation #########################
 
+
+#SRCS=$(addprefix src/,$(addsuffix .d,$(SRC_D_MODULES))) #all d files
+#OBJS= $(OBJDIR)/errno_c.o $(OBJDIR)/threadasm.o $(OBJDIR)/complex.o $(OBJDIR)/memory_osx.o #non d files
 $(DRUNTIME): $(OBJS) $(SRCS) win32.mak
 	$(DMD) -lib -of$(DRUNTIME) -Xfdruntime.json $(DFLAGS) $(SRCS) $(OBJS)
+	
+	
 
 unittest : $(addprefix $(OBJDIR)/,$(SRC_D_MODULES)) $(DRUNTIME) $(OBJDIR)/emptymain.d
 	@echo done

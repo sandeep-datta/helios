@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/wchar_.d'
+// D import file generated from 'src\core\stdc\wchar_.d'
 module core.stdc.wchar_;
 private import core.stdc.config;
 

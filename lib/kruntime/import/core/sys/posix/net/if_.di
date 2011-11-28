@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/net/if_.d'
+// D import file generated from 'src\core\sys\posix\net\if_.d'
 module core.sys.posix.net.if_;
 private import core.sys.posix.config;
 

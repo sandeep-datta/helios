@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/stdarg.d'
+// D import file generated from 'src\core\stdc\stdarg.d'
 module core.stdc.stdarg;
 @system version (X86)
 {

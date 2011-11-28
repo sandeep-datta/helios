@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/complex.d'
+// D import file generated from 'src\core\stdc\complex.d'
 module core.stdc.complex;
 extern (C) nothrow 
 {

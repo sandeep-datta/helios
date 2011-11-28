@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sync/barrier.d'
+// D import file generated from 'src\core\sync\barrier.d'
 module core.sync.barrier;
 public import core.sync.exception;
 

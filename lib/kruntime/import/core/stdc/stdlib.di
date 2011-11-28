@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/stdlib.d'
+// D import file generated from 'src\core\stdc\stdlib.d'
 module core.stdc.stdlib;
 private import core.stdc.config;
 

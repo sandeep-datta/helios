@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/signal.d'
+// D import file generated from 'src\core\sys\posix\signal.d'
 module core.sys.posix.signal;
 private import core.sys.posix.config;
 

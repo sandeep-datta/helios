@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/stdio.d'
+// D import file generated from 'src\core\sys\posix\stdio.d'
 module core.sys.posix.stdio;
 private import core.sys.posix.config;
 

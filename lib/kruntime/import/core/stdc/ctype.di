@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/ctype.d'
+// D import file generated from 'src\core\stdc\ctype.d'
 module core.stdc.ctype;
 extern (C) nothrow @safe 
 {

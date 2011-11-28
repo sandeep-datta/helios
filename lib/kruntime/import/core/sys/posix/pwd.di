@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/pwd.d'
+// D import file generated from 'src\core\sys\posix\pwd.d'
 module core.sys.posix.pwd;
 private import core.sys.posix.config;
 

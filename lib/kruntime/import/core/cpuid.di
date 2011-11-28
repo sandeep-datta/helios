@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/cpuid.d'
+// D import file generated from 'src\core\cpuid.d'
 module core.cpuid;
 version (D_InlineAsm_X86)
 {

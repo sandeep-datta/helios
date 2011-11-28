@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/sys/mman.d'
+// D import file generated from 'src\core\sys\posix\sys\mman.d'
 module core.sys.posix.sys.mman;
 private import core.sys.posix.config;
 

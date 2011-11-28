@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/stdint.d'
+// D import file generated from 'src\core\stdc\stdint.d'
 module core.stdc.stdint;
 private import core.stdc.stddef;
 

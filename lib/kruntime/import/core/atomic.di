@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/atomic.d'
+// D import file generated from 'src\core\atomic.d'
 module core.atomic;
 version (D_InlineAsm_X86)
 {

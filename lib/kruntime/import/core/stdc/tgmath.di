@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/tgmath.d'
+// D import file generated from 'src\core\stdc\tgmath.d'
 module core.stdc.tgmath;
 private import core.stdc.config;
 

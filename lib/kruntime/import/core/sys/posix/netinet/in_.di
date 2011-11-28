@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/netinet/in_.d'
+// D import file generated from 'src\core\sys\posix\netinet\in_.d'
 module core.sys.posix.netinet.in_;
 private import core.sys.posix.config;
 

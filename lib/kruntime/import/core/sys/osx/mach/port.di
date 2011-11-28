@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/osx/mach/port.d'
+// D import file generated from 'src\core\sys\osx\mach\port.d'
 module core.sys.osx.mach.port;
 version (OSX)
 {

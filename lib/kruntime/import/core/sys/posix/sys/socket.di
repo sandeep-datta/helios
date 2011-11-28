@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/sys/socket.d'
+// D import file generated from 'src\core\sys\posix\sys\socket.d'
 module core.sys.posix.sys.socket;
 private import core.sys.posix.config;
 

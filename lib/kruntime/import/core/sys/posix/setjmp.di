@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/setjmp.d'
+// D import file generated from 'src\core\sys\posix\setjmp.d'
 module core.sys.posix.setjmp;
 private import core.sys.posix.config;
 

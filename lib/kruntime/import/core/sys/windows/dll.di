@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/windows/dll.d'
+// D import file generated from 'src\core\sys\windows\dll.d'
 module core.sys.windows.dll;
 version (Windows)
 {

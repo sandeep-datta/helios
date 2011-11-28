@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/fcntl.d'
+// D import file generated from 'src\core\sys\posix\fcntl.d'
 module core.sys.posix.fcntl;
 private import core.sys.posix.config;
 

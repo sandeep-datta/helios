@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/errno.d'
+// D import file generated from 'src\core\stdc\errno.d'
 module core.stdc.errno;
 extern (C) int getErrno();
 

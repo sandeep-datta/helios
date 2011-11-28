@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/poll.d'
+// D import file generated from 'src\core\sys\posix\poll.d'
 module core.sys.posix.poll;
 private import core.sys.posix.config;
 

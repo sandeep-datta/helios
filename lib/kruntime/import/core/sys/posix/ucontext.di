@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/ucontext.d'
+// D import file generated from 'src\core\sys\posix\ucontext.d'
 module core.sys.posix.ucontext;
 private import core.sys.posix.config;
 

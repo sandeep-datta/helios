@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/math.d'
+// D import file generated from 'src\core\stdc\math.d'
 module core.stdc.math;
 private import core.stdc.config;
 
@@ -847,7 +847,7 @@ return log10(x);
 {
 return log1p(x);
 }
-    private enum real ONE_LN2 = 1 / 0xb.17217f7d1cf79acp-4L;
+    private enum real ONE_LN2 = 1 / 0x1.62e42fefa39ef358p-1L;
 
     double log2(double x)
 {

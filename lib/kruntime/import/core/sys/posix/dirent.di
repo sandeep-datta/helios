@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/dirent.d'
+// D import file generated from 'src\core\sys\posix\dirent.d'
 module core.sys.posix.dirent;
 private import core.sys.posix.config;
 

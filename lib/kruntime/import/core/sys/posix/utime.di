@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/utime.d'
+// D import file generated from 'src\core\sys\posix\utime.d'
 module core.sys.posix.utime;
 private import core.sys.posix.config;
 

@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/unistd.d'
+// D import file generated from 'src\core\sys\posix\unistd.d'
 module core.sys.posix.unistd;
 private import core.sys.posix.config;
 

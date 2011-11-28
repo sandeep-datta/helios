@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/pthread.d'
+// D import file generated from 'src\core\sys\posix\pthread.d'
 module core.sys.posix.pthread;
 private import core.sys.posix.config;
 
@@ -34,7 +34,7 @@ PTHREAD_CREATE_DETACHED,
 PTHREAD_INHERIT_SCHED,
 PTHREAD_EXPLICIT_SCHED,
 }
-    enum PTHREAD_ONCE_INIT = 0;
+    enum PTHREAD_ONCE_INIT = pthread_once_t.init;
     enum 
 {
 PTHREAD_PROCESS_PRIVATE,
@@ -66,7 +66,7 @@ PTHREAD_CREATE_DETACHED = 2,
 PTHREAD_INHERIT_SCHED = 1,
 PTHREAD_EXPLICIT_SCHED = 2,
 }
-    enum PTHREAD_ONCE_INIT = 0;
+    enum PTHREAD_ONCE_INIT = pthread_once_t.init;
     enum 
 {
 PTHREAD_PROCESS_PRIVATE = 2,

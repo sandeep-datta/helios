@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/sys/shm.d'
+// D import file generated from 'src\core\sys\posix\sys\shm.d'
 module core.sys.posix.sys.shm;
 private import core.sys.posix.config;
 

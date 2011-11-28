@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/limits.d'
+// D import file generated from 'src\core\stdc\limits.d'
 module core.stdc.limits;
 private import core.stdc.config;
 

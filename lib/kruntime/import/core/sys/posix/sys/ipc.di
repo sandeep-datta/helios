@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/sys/ipc.d'
+// D import file generated from 'src\core\sys\posix\sys\ipc.d'
 module core.sys.posix.sys.ipc;
 private import core.sys.posix.config;
 

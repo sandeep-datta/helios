@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/osx/mach/kern_return.d'
+// D import file generated from 'src\core\sys\osx\mach\kern_return.d'
 module core.sys.osx.mach.kern_return;
 version (OSX)
 {

@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/sys/wait.d'
+// D import file generated from 'src\core\sys\posix\sys\wait.d'
 module core.sys.posix.sys.wait;
 private import core.sys.posix.config;
 

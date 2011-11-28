@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/float_.d'
+// D import file generated from 'src\core\stdc\float_.d'
 module core.stdc.float_;
 extern (C) 
 {

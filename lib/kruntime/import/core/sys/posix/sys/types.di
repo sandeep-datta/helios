@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/sys/types.d'
+// D import file generated from 'src\core\sys\posix\sys\types.d'
 module core.sys.posix.sys.types;
 private import core.sys.posix.config;
 

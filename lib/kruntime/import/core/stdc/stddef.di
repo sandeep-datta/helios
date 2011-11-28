@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/stddef.d'
+// D import file generated from 'src\core\stdc\stddef.d'
 module core.stdc.stddef;
 extern (C) version (Windows)
 {

@@ -1,5 +1,4 @@
 
-
 #NOTE: librt.a is required for clock_getres() and clock_gettime
 #TODO: remove references to librt.a and prevent linking to all standard libraries
 
@@ -9,22 +8,43 @@
 #LIBS=-lkruntime
 
 import os
+from os.path import join
 
 def SymLink(target, source, env):
     os.symlink(os.path.abspath(str(source[0])), os.path.abspath(str(target[0])))
 
-env32 = Environment(CFLAGS='-m32', DFLAGS='-m32', LINKFLAGS='-m32', LIBS=['rt'])
+#ENVIRONMENT CREATION
+#Note: We are similating a windows environment since replacing the windows functions will be much easier (for me)
+env32_ut = Environment(CFLAGS='-m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -g -D_WIN32' 
+                       , CXXFLAGS='-fno-rtti -fno-exceptions'
+                       , CPPFLAGS=['-Ilib/krt/include']
+                       , DFLAGS=['-m32', '-g', '-release', '-nofloat', '-w', '-d', '-Ilib/kruntime/src', '-Ilib/kruntime/import']
+                       , LINKFLAGS='-m32')
+                    
+                    
+env32 = env32_ut.Clone()
+env32.AppendUnique(DFLAGS='-inline')
 
-#env = Environment(CC="gcc", CFLAGS="-m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -g", LDFLAGS="-melf_i386 --oformat=elf32-i386")
 
-Export('env32')
+#Export(env32, env32_ut)
+Export("env32 env32_ut")
 
-sub_projects = {
-    "src/SConscript" : "",
-    "lib/SConscript" : "lib",
-}
+#TARGETS
+sub_projects = [
+    #"src" ,
+    "lib"
+]
 
-for project in sub_projects.keys():
-    env32.SConscript(project, variant_dir="out/objs" + sub_projects[project], duplicate=0)
+out = []
 
-env32.Command("out/kernel", "out/objs/kernel", SymLink)
+for project in sub_projects:
+    SConscript(join(project, "SConscript")
+                , variant_dir=join("out/objs", project)
+                , duplicate=0)
+
+
+
+
+#Depends("out/objs/kernel", out)
+#Depends("out/kernel", "out/objs/kernel")
+#env32.Command("out/kernel", "out/objs/kernel", SymLink)

@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/math.d'
+// D import file generated from 'src\core\math.d'
 module core.math;
 version (LDC)
 {

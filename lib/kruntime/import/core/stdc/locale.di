@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/locale.d'
+// D import file generated from 'src\core\stdc\locale.d'
 module core.stdc.locale;
 extern (C) nothrow 
 {

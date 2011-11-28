@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/sys/select.d'
+// D import file generated from 'src\core\sys\posix\sys\select.d'
 module core.sys.posix.sys.select;
 private import core.sys.posix.config;
 

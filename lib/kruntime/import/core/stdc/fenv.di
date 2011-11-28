@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/fenv.d'
+// D import file generated from 'src\core\stdc\fenv.d'
 module core.stdc.fenv;
 extern (C) 
 {

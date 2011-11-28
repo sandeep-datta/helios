@@ -1,0 +1,16 @@
+import os
+from os.path import join
+
+#TARGETS
+sub_projects = [
+    "kruntime",
+]
+
+#out = []
+
+for project in sub_projects:
+     SConscript(join(project, "SConscript")
+                , duplicate=0)
+
+
+#Return("out")

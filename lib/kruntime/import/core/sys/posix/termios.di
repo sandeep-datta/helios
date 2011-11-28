@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/termios.d'
+// D import file generated from 'src\core\sys\posix\termios.d'
 module core.sys.posix.termios;
 private import core.sys.posix.config;
 

@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/sys/time.d'
+// D import file generated from 'src\core\sys\posix\sys\time.d'
 module core.sys.posix.sys.time;
 private import core.sys.posix.config;
 

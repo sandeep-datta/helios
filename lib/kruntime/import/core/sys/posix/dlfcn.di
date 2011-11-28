@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/dlfcn.d'
+// D import file generated from 'src\core\sys\posix\dlfcn.d'
 module core.sys.posix.dlfcn;
 private import core.sys.posix.config;
 

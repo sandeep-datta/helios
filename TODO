@@ -1,7 +1,11 @@
 =======
  Main
 =======
-- upgrade kruntime to dmd v2.056 (please remember to use the same version of phobos when trying to compile phobos for the kernel)
+- lib/kruntime/src/rt/deh.d contains code to handle D exceptions using the windows SEH mechanism hence it is not 
+required at the moment and has been renamed to deh.d_ to exclude it from the build
+
+- upgrade kruntime to dmd v2.056 (please remember to use the same version of phobos when trying to compile phobos 
+for the kernel)
 - Compile libdruntime.a with newlib
 - Link kernel with libdruntime.d and remove the _Dmodule_ref kludge
 - Reimplement all C files in D
@@ -15,7 +19,8 @@
  REJECTED
 ==========
 
-1. Change code in update_image.sh and run_bochs.sh so that root previleges are not required. REASON: This is by design, non root users cannot mount loopback devices in linux.
+- Change code in update_image.sh and run_bochs.sh so that root previleges are not required. REASON: This is by design, 
+non root users cannot mount loopback devices in linux.
 
 
 ======

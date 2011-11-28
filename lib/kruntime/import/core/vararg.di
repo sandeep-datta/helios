@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/vararg.d'
+// D import file generated from 'src\core\vararg.d'
 module core.vararg;
 version (X86)
 {

@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/osx/mach/semaphore.d'
+// D import file generated from 'src\core\sys\osx\mach\semaphore.d'
 module core.sys.osx.mach.semaphore;
 version (OSX)
 {

@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/inttypes.d'
+// D import file generated from 'src\core\sys\posix\inttypes.d'
 module core.sys.posix.inttypes;
 private import core.sys.posix.config;
 

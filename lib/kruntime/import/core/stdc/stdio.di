@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/stdio.d'
+// D import file generated from 'src\core\stdc\stdio.d'
 module core.stdc.stdio;
 private 
 {

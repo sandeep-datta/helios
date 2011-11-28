@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/windows/dbghelp.d'
+// D import file generated from 'src\core\sys\windows\dbghelp.d'
 module core.sys.windows.dbghelp;
 import core.sys.windows.windows;
 alias CHAR TCHAR;
@@ -76,7 +76,7 @@ struct IMAGEHLP_SYMBOL64
     DWORD MaxNameLength;
     TCHAR[1] Name;
 }
-extern (C) 
+extern (Windows) 
 {
     alias BOOL function(HANDLE hProcess, DWORD64 lpBaseAddress, PVOID lpBuffer, DWORD nSize, LPDWORD lpNumberOfBytesRead) ReadProcessMemoryProc64;
     alias PVOID function(HANDLE hProcess, DWORD64 AddrBase) FunctionTableAccessProc64;

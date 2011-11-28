@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/sys/stat.d'
+// D import file generated from 'src\core\sys\posix\sys\stat.d'
 module core.sys.posix.sys.stat;
 private import core.sys.posix.config;
 

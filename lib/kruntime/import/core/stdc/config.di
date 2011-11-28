@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/config.d'
+// D import file generated from 'src\core\stdc\config.d'
 module core.stdc.config;
 extern (C) version (Windows)
 {

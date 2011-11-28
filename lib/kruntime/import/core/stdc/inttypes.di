@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/inttypes.d'
+// D import file generated from 'src\core\stdc\inttypes.d'
 module core.stdc.inttypes;
 public import core.stdc.stddef;
 

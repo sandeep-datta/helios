@@ -1,16 +1,35 @@
+#!/usr/bin/python
 import subprocess
 import re
 import shutil
 from pipeline import *
 import os
-from os import chdir
+from os.path import join
 
+dirStack = []
 
-KRTD="/home/sandeepd2/Desktop/Deimos/tools/lib/kruntime"
+def pushd(path):
+    curDir = os.getcwd()
+    os.chdir(os.path.abspath(path))
+    dirStack.append(os.path.abspath(path)) #it is safe to push the old value to the stack since chdir was successful
+    
+def popd():
+    os.chdir(dirStack[-1])
+    dirStack.pop() #it is safe to pop since chdir and access to last element in the stack was successful
+
+deimos_base = os.environ['DEIMOS_BASE']
+
+if deimos_base == "":
+    print "DEIMOS_BASE is undefined"
+    exit(1)
+
+KRTD=join(deimos_base, "lib/krt")
 
 SRCD= {
-    "/home/sandeepd2/Source/osdev/Deimos/tools/lib/newlib/" : {"prefix" : ""},
-    "/home/sandeepd2/Source/osdev/gcc/build-gcc/gcc/include/" : {"prefix" : "libgcc/include" }
+                                        
+    join(deimos_base, "lib/Bkup/newlib-src/newlib/libc") : {"prefix" : ""},
+    join(deimos_base, "lib/Bkup/newlib-src/newlib/libm") : {"prefix" : ""},
+    "/home/sandeepd2/Source/osdev/gcc/build-gcc/gcc/include/" : {"prefix" : "include" }
 }
 
 
@@ -19,8 +38,9 @@ def getTargetDir(filePath):
     print "filePath:", filePath
     for d in SRCD.keys():
         if filePath.startswith(d):
-            relPath = os.path.join(SRCD[d]["prefix"], filePath[len(d):])
-            return os.path.dirname(os.path.join(KRTD, relPath))
+            prefix = SRCD[d]["prefix"]
+            relPath = join(prefix, filePath[len(d)+1:])
+            return os.path.dirname(join(KRTD, relPath))
 
 def run(*cmd):
     l=[]
@@ -36,20 +56,22 @@ def run(*cmd):
 def getMissingFiles():
     regexMissingFile = re.compile(".*fatal error: (.*): No such file or directory")
     missingFiles = []
-    for line in run("make -f posix-bare.mak"):
+    pushd(deimos_base)
+    for line in run("scons"):
         m = regexMissingFile.match(line)
         
         if m is not None:
             print "Make file error:", line
             missingFiles.append(m.groups()[0])
     
+    popd()
     return missingFiles
     
 
 
 while True:
     #print "Entering:", KRTD
-    chdir(KRTD)
+    pushd(KRTD)
 
     #Create a list of missing files
     missingFiles = getMissingFiles()

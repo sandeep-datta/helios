@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/config.d'
+// D import file generated from 'src\core\sys\posix\config.d'
 module core.sys.posix.config;
 public import core.stdc.config;
 

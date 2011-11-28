@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/sys/uio.d'
+// D import file generated from 'src\core\sys\posix\sys\uio.d'
 module core.sys.posix.sys.uio;
 private import core.sys.posix.config;
 

@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/stdc/time.d'
+// D import file generated from 'src\core\stdc\time.d'
 module core.stdc.time;
 private import core.stdc.config;
 

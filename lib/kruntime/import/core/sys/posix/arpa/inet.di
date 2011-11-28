@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/posix/arpa/inet.d'
+// D import file generated from 'src\core\sys\posix\arpa\inet.d'
 module core.sys.posix.arpa.inet;
 private import core.sys.posix.config;
 

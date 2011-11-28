@@ -1,4 +1,4 @@
-// D import file generated from 'src/core/sys/osx/mach/thread_act.d'
+// D import file generated from 'src\core\sys\osx\mach\thread_act.d'
 module core.sys.osx.mach.thread_act;
 version (OSX)
 {
