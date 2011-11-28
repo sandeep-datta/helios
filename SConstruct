@@ -15,23 +15,21 @@ def SymLink(target, source, env):
 
 #ENVIRONMENT CREATION
 #Note: We are similating a windows environment since replacing the windows functions will be much easier (for me)
-env32_ut = Environment(CFLAGS='-m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -g -D_WIN32' 
-                       , CXXFLAGS='-fno-rtti -fno-exceptions'
+env32_ut = Environment(CFLAGS=['-m32', '-nostdlib', '-nostdinc', '-fno-builtin', '-fno-stack-protector', '-g', '-D_WIN32']
+                       , CXXFLAGS=['-fno-rtti', '-fno-exceptions']
                        , CPPFLAGS=['-Ilib/krt/include']
                        , DFLAGS=['-m32', '-g', '-release', '-nofloat', '-w', '-d', '-Ilib/kruntime/src', '-Ilib/kruntime/import']
-                       , LINKFLAGS='-m32')
-                    
-                    
+                       , LINKFLAGS=['-m32', '-nostdlib', '-Lout/objs/lib/kruntime'] #-nostdlib will prevent the default crt0 from being linked in
+                       , LIBS = ['kruntime']) #This also removes default libraries from the linker command line
+
 env32 = env32_ut.Clone()
 env32.AppendUnique(DFLAGS='-inline')
 
-
-#Export(env32, env32_ut)
 Export("env32 env32_ut")
 
 #TARGETS
 sub_projects = [
-    #"src" ,
+    "src" ,
     "lib"
 ]
 
@@ -41,9 +39,6 @@ for project in sub_projects:
     SConscript(join(project, "SConscript")
                 , variant_dir=join("out/objs", project)
                 , duplicate=0)
-
-
-
 
 #Depends("out/objs/kernel", out)
 #Depends("out/kernel", "out/objs/kernel")

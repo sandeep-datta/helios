@@ -27,7 +27,7 @@ struct Array
 
 private TypeInfo tiglobal;
 
-extern (C) int cmp(void* p1, void* p2)
+extern (C) int cmp(const(void*) p1, const(void*) p2) //SDX2000: Added missing const modifiers
 {
     return tiglobal.compare(p1, p2);
 }

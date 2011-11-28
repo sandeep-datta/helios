@@ -4,13 +4,28 @@ import re
 import shutil
 from pipeline import *
 import os
-from os import chdir
+from os.path import join
 
 import pprint
 
-BUILDD="/home/sandeepd2/Source/osdev/Deimos/src"
-NLD="/home/sandeepd2/Source/osdev/Deimos/lib/src/newlib"
-KRTD="/home/sandeepd2/Source/osdev/Deimos/lib"
+
+dirStack = []
+
+def pushd(path):
+    curDir = os.getcwd()
+    os.chdir(os.path.abspath(path))
+    dirStack.append(os.path.abspath(path)) #it is safe to push the old value to the stack since chdir was successful
+    
+def popd():
+    os.chdir(dirStack[-1])
+    dirStack.pop() #it is safe to pop since chdir and access to last element in the stack was successful
+
+deimos_base = os.environ['DEIMOS_BASE']
+
+BUILDD=join(deimos_base, "src")
+
+NLD=join(deimos_base, "lib/Bkup/newlib-src")
+KRTD_OUT=join(deimos_base, "/home/sandeepd2/Source/osdev/Deimos/lib")
 
 def run(*cmd):
     l=[]
@@ -24,7 +39,7 @@ def run(*cmd):
     return subprocess.Popen(l, stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()[0].split("\n")
     
 
-def getMissingRefs():
+def buildAndGetMissingRefs():
     regexMissingRef = re.compile("(.*):.*: undefined reference to \`(.*)\'")
     missingRefs = set()
     for line in run("make"):
@@ -39,21 +54,19 @@ def getMissingRefs():
     
 
 
-chdir(BUILDD)
-missingRefs = getMissingRefs()
-
+pushd(BUILDD)
+missingRefs = buildAndGetMissingRefs()
 for ref in missingRefs:
-    demangledName = run("./demangle", ref)[0]
+    demangledName = run(join(deimos_base,"tools/demangle"), ref)[0]
     if demangledName == ref:
-        print "Missing ref: ", ref
+        print "Missing ref: ", ref #could not demangle print as is
     else:
-        print "Missing ref: ", run("./demangle", ref)[0], " (", ref, ")"
+        print "Missing ref: ", demangledName, " (", ref, ")" #print demangled name then the original in parens
+popd()
 
-chdir(NLD)
-
-#find . -name "*.c*" | xargs grep "_DEFUN[ ]*(memcpy"
+pushd(NLD)
+#find . -name "*.c*" | xargs grep "_DEFUN[ ]*(<symbol_name>"
 #try to find C implementation files for the missing symbols if possible
-
 for symb in missingRefs:
     r1 = re.compile("_DEFUN[ ]*\(" + symb)
     r2 = re.compile("weak_alias[ ]*\(.*"+symb)
@@ -64,14 +77,15 @@ for symb in missingRefs:
             if r1.search(s) or r2.search(s):
                 print "Symbol: \"" + symb + "\" found in: ", os.path.join(NLD, fname)
 
+popd()
 
-##try to locate the symbol in the kruntime library and display corresponding record
-#chdir(KRTD)
-#print "\nTrying to locate missing items in libkruntime.a\n"
-#for symb in missingRefs:
-    #rsymb = re.compile(".*%s.*" % symb)
-    #rund = re.compile(".*\*UND\*.*")
-    #for line in run("objdump -t libkruntime.a"):
-        #if rsymb.match(line) and not rund.match(line):
-            #print line
-
+#try to locate the symbol in the kruntime library and display corresponding record
+pushd(KRTD_OUT)
+print "\nTrying to locate missing items in libkruntime.a\n"
+for symb in missingRefs:
+    rsymb = re.compile(".*%s.*" % symb)
+    rund = re.compile(".*\*UND\*.*")
+    for line in run("objdump -t libkruntime.a"):
+        if rsymb.match(line) and not rund.match(line):
+            print line
+popd()

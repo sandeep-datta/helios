@@ -1,0 +1,132 @@
+#!/usr/bin/python
+import subprocess
+import re
+import shutil
+from pipeline import *
+import os
+
+from os.path import join
+from optparse import OptionParser
+from pprint import pprint
+
+parser = OptionParser()
+parser.add_option("--find", action="store_true", dest="searchForMissingSymbols",
+                  help="Search for missing symbols")
+                  
+parser.add_option("--hide", action="store_true", dest="hideMissingSymbolsList",
+                  help="Hide initial missing symbols list")
+                  
+parser.add_option("-o", dest="fileName",
+                  help="Output to file in addition to stdout")
+
+
+                  
+(options, args) = parser.parse_args()
+
+outf = None
+
+if options.fileName:
+    outf = open(options.fileName, "w")
+    
+    
+def write(s):
+    print s
+    if outf:
+        outf.write(str(s) + "\n")
+
+dirStack = []
+
+def pushd(path):
+    curDir = os.getcwd()
+    os.chdir(os.path.abspath(path))
+    dirStack.append(os.path.abspath(path)) #it is safe to push the old value to the stack since chdir was successful
+    
+def popd():
+    os.chdir(dirStack[-1])
+    dirStack.pop() #it is safe to pop since chdir and access to last element in the stack was successful
+
+deimos_base = os.environ['DEIMOS_BASE']
+
+
+KRT_LIBD=join(deimos_base, "out/objs/lib/kruntime")
+KRT_OUTD=join(deimos_base, "out/objs/lib/kruntime/src")
+#KRT_OUTD=join(deimos_base, "out/1")
+
+
+def run(*cmd):
+    l=[]
+    for i, x in enumerate(cmd):
+        if i == 0:
+            l.extend(str(x).split())
+        else:
+            l.append(x)
+    
+    #print "l:", l
+    return subprocess.Popen(l, stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()[0].split("\n")
+    
+
+
+def getMissingSymbols():
+    missingSymbols = set()
+    rUnd = re.compile(".*\*UND\*[ \t]*.{8}[ \t]*(.*)")
+    for line in run("objdump -t libkruntime.a"):
+        m = rUnd.match(line)
+        if m:
+            #print line
+            #print m.groups()
+            missingSymbols.add(m.groups()[0])
+    return list(missingSymbols)
+    
+
+#try to locate the symbol in the kruntime library and display corresponding record
+pushd(KRT_LIBD)
+missingSymbols = getMissingSymbols()
+popd()
+
+if len(missingSymbols) == 0:
+    write("No missing symbols were found.")
+    exit(0)
+
+
+def getDemangledName(symbol):
+    return run(join(deimos_base,"tools/demangle"), symbol)[0]
+    
+dsymbols = []
+csymbols = []
+for symbol in missingSymbols:
+    demangledName = getDemangledName(symbol)
+    if demangledName == symbol:
+        csymbols.append(symbol)
+    else:
+        dsymbols.append(symbol)
+
+if not options.hideMissingSymbolsList:
+    write("****Missing D entities*****\n")
+    for symbol in dsymbols:
+        demangledName = getDemangledName(symbol)
+        write(demangledName + "\t(" + symbol+ ")") #print demangled name then the original in parens
+        
+    write("\n****Missing C entities*****\n")
+    for symbol in csymbols:
+        write(symbol)
+            
+    write("\nIn all %d missing symbols were found" % len(missingSymbols))
+
+
+if options.searchForMissingSymbols:
+    pushd(KRT_OUTD)
+    for fn in run('find -name *.o'):
+        if os.path.isfile(fn):
+            for line in run("objdump -t %s" % fn):
+                resolvedSymbols = []
+                for symbol in missingSymbols:
+                    rsymb = re.compile(".*\.text\.%s[ \t]*.*" % symbol)
+                    rund = re.compile(".*\*UND\*.*")
+                    if rsymb.match(line) and not rund.match(line):
+                        resolvedSymbols.append(symbol)
+                        write("Found symbol %s in file %s" % (getDemangledName(symbol), fn))
+                        write("\t" + line)
+                missingSymbols = [ x for x in missingSymbols if x not in  resolvedSymbols ]
+    write("\n*****Unresolved symbols******\n")
+    write(missingSymbols)
+    popd()

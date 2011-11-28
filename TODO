@@ -1,34 +1,35 @@
 =======
- Main
+ TODO
 =======
-- lib/kruntime/src/rt/deh.d contains code to handle D exceptions using the windows SEH mechanism hence it is not 
-required at the moment and has been renamed to deh.d_ to exclude it from the build
+- Find unresolved references in libkruntime and provide implementations for them
+- Reimplement all C files within Deimos/src in D
+- Once we have a working bare kernel using druntime (+ missing crt implementation in libkrt) rework the druntime to remove the need for an underlying C library.
 
-- upgrade kruntime to dmd v2.056 (please remember to use the same version of phobos when trying to compile phobos 
-for the kernel)
-- Compile libdruntime.a with newlib
-- Link kernel with libdruntime.d and remove the _Dmodule_ref kludge
-- Reimplement all C files in D
-- Once we have a working bare kernel using druntime + newlib rework the druntime to remove the need for an underlying C library.
-
-================
- Infrastructure
-================
 
 ==========
  REJECTED
 ==========
 
+- Compile libdruntime.a with newlib. Decided against taking in newlib as a dependency due to its legacy build system and other quirks. Instead IMO it is better to "lift" code from newlib as and when required (keeping the license in mind ofcourse). But eventually all C code needs to be phased out with equivalent D code.
+
 - Change code in update_image.sh and run_bochs.sh so that root previleges are not required. REASON: This is by design, 
-non root users cannot mount loopback devices in linux.
+non root users cannot mount loopback devices in linux. 
 
 
 ======
  DONE
 ======
 
-1. Directory structure reorg.
+- Generate bootable ISO instead of using a floppy image for Deimos
+
+- Link kernel with libdruntime.d and remove the _Dmodule_ref kludge (note libdruntime has been renamed to libkruntime)
+
+- upgrade kruntime to dmd v2.056 (please remember to use the same version of phobos when trying to compile phobos 
+for the kernel)
+
+- Directory structure reorg.
     a. obj/[config] - all intermediates go here
     b. lib/[config] - all libraries go here
     c. out - the kernel image is generated here
     d. img - disk images are kept here 
+

@@ -5,4 +5,6 @@ objs.extend(env32.Object(Glob("*.d")))
 objs.extend(env32.Object(Glob("*.c")))
 objs.extend(env32.Object(Glob("*.s")))
 
+
 env32.Program("kernel", objs)
+#print "LIBS:", env32['LIBS']

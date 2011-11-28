@@ -1,0 +1,255 @@
+NOTE: The symbols "found" below were not really missing. This is just an artifact of the fact that a lib file is just an archive of independent object files the archiver does not resolved and fix any missing links in the object files before packing them into a library. So in other words the symbols which could not be resolved are the ones really missing (at least for the time being)
+
+
+Found symbol _d_dynamic_cast in file ./rt/cast_.o
+	00000000 l    d  .text._d_dynamic_cast	00000000 .text._d_dynamic_cast
+Found symbol _d_isbaseof in file ./rt/cast_.o
+	00000000 l    d  .text._d_isbaseof2	00000000 .text._d_isbaseof2
+Found symbol _aaLen in file ./rt/aaA.o
+	00000000 l    d  .text._aaLen	00000000 .text._aaLen
+Found symbol _aaGetX in file ./rt/aaA.o
+	00000000 l    d  .text._aaGetX	00000000 .text._aaGetX
+Found symbol _aaInX in file ./rt/aaA.o
+	00000000 l    d  .text._aaInX	00000000 .text._aaInX
+Found symbol _aaDelX in file ./rt/aaA.o
+	00000000 l    d  .text._aaDelX	00000000 .text._aaDelX
+Found symbol _aaValues in file ./rt/aaA.o
+	00000000 l    d  .text._aaValues	00000000 .text._aaValues
+Found symbol _aaRehash in file ./rt/aaA.o
+	00000000 l    d  .text._aaRehash	00000000 .text._aaRehash
+Found symbol _aaKeys in file ./rt/aaA.o
+	00000000 l    d  .text._aaKeys	00000000 .text._aaKeys
+Found symbol _aaApply in file ./rt/aaA.o
+	00000000 l    d  .text._aaApply	00000000 .text._aaApply
+Found symbol _aaApply2 in file ./rt/aaA.o
+	00000000 l    d  .text._aaApply2	00000000 .text._aaApply2
+Found symbol _adSort in file ./rt/qsort.o
+	00000000 l    d  .text._adSort	00000000 .text._adSort
+Found symbol _d_createTrace in file ./rt/dmain2.o
+	00000000 l    d  .text._d_createTrace	00000000 .text._d_createTrace
+Found symbol rt_loadLibrary in file ./rt/dmain2.o
+	00000000 l    d  .text.rt_loadLibrary	00000000 .text.rt_loadLibrary
+Found symbol rt_unloadLibrary in file ./rt/dmain2.o
+	00000000 l    d  .text.rt_unloadLibrary	00000000 .text.rt_unloadLibrary
+Found symbol _d_assertm in file ./rt/dmain2.o
+	00000000 l    d  .text._d_assertm	00000000 .text._d_assertm
+Found symbol _d_unittestm in file ./rt/dmain2.o
+	00000000 l    d  .text._d_unittestm	00000000 .text._d_unittestm
+Found symbol _d_array_bounds in file ./rt/dmain2.o
+	00000000 l    d  .text._d_array_bounds	00000000 .text._d_array_bounds
+Found symbol rt_isHalting in file ./rt/dmain2.o
+	00000000 l    d  .text.rt_isHalting	00000000 .text.rt_isHalting
+Found symbol rt_args in file ./rt/dmain2.o
+	00000000 l    d  .text.rt_args	00000000 .text.rt_args
+Found symbol rt_init in file ./rt/dmain2.o
+	00000000 l    d  .text.rt_init	00000000 .text.rt_init
+Found symbol rt_term in file ./rt/dmain2.o
+	00000000 l    d  .text.rt_term	00000000 .text.rt_term
+Found symbol _d_throwc in file ./rt/deh2.o
+	00000000 l    d  .text._d_throwc	00000000 .text._d_throwc
+Found symbol _aApplycd2 in file ./rt/aApply.o
+	00000000 l    d  .text._aApplycd2	00000000 .text._aApplycd2
+Found symbol _d_allocmemory in file ./rt/lifetime.o
+	00000000 l    d  .text._d_allocmemory	00000000 .text._d_allocmemory
+Found symbol _d_newclass in file ./rt/lifetime.o
+	00000000 l    d  .text._d_newclass	00000000 .text._d_newclass
+Found symbol rt_lifetimeInit in file ./rt/lifetime.o
+	00000000 l    d  .text.rt_lifetimeInit	00000000 .text.rt_lifetimeInit
+Found symbol rt_processGCMarks in file ./rt/lifetime.o
+	00000000 l    d  .text.rt_processGCMarks	00000000 .text.rt_processGCMarks
+Found symbol _d_newarrayT in file ./rt/lifetime.o
+	00000000 l    d  .text._d_newarrayT	00000000 .text._d_newarrayT
+Found symbol _d_newarrayiT in file ./rt/lifetime.o
+	00000000 l    d  .text._d_newarrayiT	00000000 .text._d_newarrayiT
+Found symbol _d_delarray_t in file ./rt/lifetime.o
+	00000000 l    d  .text._d_delarray_t	00000000 .text._d_delarray_t
+Found symbol rt_setCollectHandler in file ./rt/lifetime.o
+	00000000 l    d  .text.rt_setCollectHandler	00000000 .text.rt_setCollectHandler
+Found symbol rt_getCollectHandler in file ./rt/lifetime.o
+	00000000 l    d  .text.rt_getCollectHandler	00000000 .text.rt_getCollectHandler
+Found symbol rt_finalize in file ./rt/lifetime.o
+	00000000 l    d  .text.rt_finalize	00000000 .text.rt_finalize
+Found symbol _d_arraysetlengthT in file ./rt/lifetime.o
+	00000000 l    d  .text._d_arraysetlengthT	00000000 .text._d_arraysetlengthT
+Found symbol _d_arraysetlengthiT in file ./rt/lifetime.o
+	00000000 l    d  .text._d_arraysetlengthiT	00000000 .text._d_arraysetlengthiT
+Found symbol _d_arrayappendT in file ./rt/lifetime.o
+	00000000 l    d  .text._d_arrayappendT	00000000 .text._d_arrayappendT
+Found symbol _d_arrayappendcT in file ./rt/lifetime.o
+	00000000 l    d  .text._d_arrayappendcT	00000000 .text._d_arrayappendcT
+Found symbol _d_arraycatT in file ./rt/lifetime.o
+	00000000 l    d  .text._d_arraycatT	00000000 .text._d_arraycatT
+Found symbol _d_arraycatnT in file ./rt/lifetime.o
+	00000000 l    d  .text._d_arraycatnT	00000000 .text._d_arraycatnT
+Found symbol _d_arrayliteralTX in file ./rt/lifetime.o
+	00000000 l    d  .text._d_arrayliteralTX	00000000 .text._d_arrayliteralTX
+Found symbol _adDupT in file ./rt/lifetime.o
+	00000000 l    d  .text._adDupT	00000000 .text._adDupT
+Found symbol rt_stackBottom in file ./rt/memory.o
+	00000000 l    d  .text.rt_stackBottom	00000000 .text.rt_stackBottom
+Found symbol rt_stackTop in file ./rt/memory.o
+	00000000 l    d  .text.rt_stackTop	00000000 .text.rt_stackTop
+Found symbol void rt.memory.initStaticDataGC() in file ./rt/memory.o
+	00000000 l    d  .text._D2rt6memory16initStaticDataGCFZv	00000000 .text._D2rt6memory16initStaticDataGCFZv
+Found symbol _d_criticalenter in file ./rt/critical_.o
+	00000000 l    d  .text._d_criticalenter	00000000 .text._d_criticalenter
+Found symbol _d_criticalexit in file ./rt/critical_.o
+	00000000 l    d  .text._d_criticalexit	00000000 .text._d_criticalexit
+Found symbol _STI_critical_init in file ./rt/critical_.o
+	00000000 l    d  .text._STI_critical_init	00000000 .text._STI_critical_init
+Found symbol _STD_critical_term in file ./rt/critical_.o
+	00000000 l    d  .text._STD_critical_term	00000000 .text._STD_critical_term
+Found symbol _memset16 in file ./rt/memset.o
+	00000000 l    d  .text._memset16	00000000 .text._memset16
+Found symbol _adEq2 in file ./rt/adi.o
+	00000000 l    d  .text._adEq2	00000000 .text._adEq2
+Found symbol _STI_monitor_staticctor in file ./rt/monitor_.o
+	00000000 l    d  .text._STI_monitor_staticctor	00000000 .text._STI_monitor_staticctor
+Found symbol _STD_monitor_staticdtor in file ./rt/monitor_.o
+	00000000 l    d  .text._STD_monitor_staticdtor	00000000 .text._STD_monitor_staticdtor
+Found symbol __alloca in file ./rt/alloca.o
+	00000000 l    d  .text.__alloca	00000000 .text.__alloca
+Found symbol __ULDIV__ in file ./rt/llmath.o
+	00000000 l    d  .text.__ULDIV__	00000000 .text.__ULDIV__
+Found symbol __LDIV__ in file ./rt/llmath.o
+	00000000 l    d  .text.__LDIV__	00000000 .text.__LDIV__
+Found symbol _d_switch_string in file ./rt/switch_.o
+	00000000 l    d  .text._d_switch_string	00000000 .text._d_switch_string
+Found symbol gc_init in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_init	00000000 .text.gc_init
+Found symbol gc_term in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_term	00000000 .text.gc_term
+Found symbol gc_enable in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_enable	00000000 .text.gc_enable
+Found symbol gc_disable in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_disable	00000000 .text.gc_disable
+Found symbol gc_collect in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_collect	00000000 .text.gc_collect
+Found symbol gc_minimize in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_minimize	00000000 .text.gc_minimize
+Found symbol gc_isCollecting in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_isCollecting	00000000 .text.gc_isCollecting
+Found symbol gc_getAttr in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_getAttr	00000000 .text.gc_getAttr
+Found symbol gc_setAttr in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_setAttr	00000000 .text.gc_setAttr
+Found symbol gc_clrAttr in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_clrAttr	00000000 .text.gc_clrAttr
+Found symbol gc_malloc in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_malloc	00000000 .text.gc_malloc
+Found symbol gc_qalloc in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_qalloc	00000000 .text.gc_qalloc
+Found symbol gc_calloc in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_calloc	00000000 .text.gc_calloc
+Found symbol gc_realloc in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_realloc	00000000 .text.gc_realloc
+Found symbol gc_extend in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_extend	00000000 .text.gc_extend
+Found symbol gc_reserve in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_reserve	00000000 .text.gc_reserve
+Found symbol gc_free in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_free	00000000 .text.gc_free
+Found symbol gc_addrOf in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_addrOf	00000000 .text.gc_addrOf
+Found symbol gc_sizeOf in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_sizeOf	00000000 .text.gc_sizeOf
+Found symbol gc_query in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_query	00000000 .text.gc_query
+Found symbol gc_addRoot in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_addRoot	00000000 .text.gc_addRoot
+Found symbol gc_addRange in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_addRange	00000000 .text.gc_addRange
+Found symbol gc_removeRoot in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_removeRoot	00000000 .text.gc_removeRoot
+Found symbol gc_removeRange in file ./gcstub/gc.o
+	00000000 l    d  .text.gc_removeRange	00000000 .text.gc_removeRange
+Found symbol void* gc.gcalloc.os_mem_map(uint) in file ./gc/gcalloc.o
+	00000000 l    d  .text._D2gc7gcalloc10os_mem_mapFkZPv	00000000 .text._D2gc7gcalloc10os_mem_mapFkZPv
+Found symbol int gc.gcalloc.os_mem_commit(void*, uint, uint) in file ./gc/gcalloc.o
+	00000000 l    d  .text._D2gc7gcalloc13os_mem_commitFPvkkZi	00000000 .text._D2gc7gcalloc13os_mem_commitFPvkkZi
+Found symbol int gc.gcalloc.os_mem_decommit(void*, uint, uint) in file ./gc/gcalloc.o
+	00000000 l    d  .text._D2gc7gcalloc15os_mem_decommitFPvkkZi	00000000 .text._D2gc7gcalloc15os_mem_decommitFPvkkZi
+Found symbol int gc.gcalloc.os_mem_unmap(void*, uint) in file ./gc/gcalloc.o
+	00000000 l    d  .text._D2gc7gcalloc12os_mem_unmapFPvkZi	00000000 .text._D2gc7gcalloc12os_mem_unmapFPvkZi
+Found symbol void gc.gcbits.GCBits.Dtor() in file ./gc/gcbits.o
+	00000000 l    d  .text._D2gc6gcbits6GCBits4DtorMFZv	00000000 .text._D2gc6gcbits6GCBits4DtorMFZv
+Found symbol void gc.gcbits.GCBits.alloc(uint) in file ./gc/gcbits.o
+	00000000 l    d  .text._D2gc6gcbits6GCBits5allocMFkZv	00000000 .text._D2gc6gcbits6GCBits5allocMFkZv
+Found symbol uint gc.gcbits.GCBits.test(uint) in file ./gc/gcbits.o
+	00000000 l    d  .text._D2gc6gcbits6GCBits4testMFkZk	00000000 .text._D2gc6gcbits6GCBits4testMFkZk
+Found symbol void gc.gcbits.GCBits.set(uint) in file ./gc/gcbits.o
+	00000000 l    d  .text._D2gc6gcbits6GCBits3setMFkZv	00000000 .text._D2gc6gcbits6GCBits3setMFkZv
+Found symbol void gc.gcbits.GCBits.clear(uint) in file ./gc/gcbits.o
+	00000000 l    d  .text._D2gc6gcbits6GCBits5clearMFkZv	00000000 .text._D2gc6gcbits6GCBits5clearMFkZv
+Found symbol uint gc.gcbits.GCBits.testClear(uint) in file ./gc/gcbits.o
+	00000000 l    d  .text._D2gc6gcbits6GCBits9testClearMFkZk	00000000 .text._D2gc6gcbits6GCBits9testClearMFkZk
+Found symbol uint gc.gcbits.GCBits.testSet(uint) in file ./gc/gcbits.o
+	00000000 l    d  .text._D2gc6gcbits6GCBits7testSetMFkZk	00000000 .text._D2gc6gcbits6GCBits7testSetMFkZk
+Found symbol void gc.gcbits.GCBits.zero() in file ./gc/gcbits.o
+	00000000 l    d  .text._D2gc6gcbits6GCBits4zeroMFZv	00000000 .text._D2gc6gcbits6GCBits4zeroMFZv
+Found symbol void gc.gcbits.GCBits.copy(gc.gcbits.GCBits*) in file ./gc/gcbits.o
+	00000000 l    d  .text._D2gc6gcbits6GCBits4copyMFPS2gc6gcbits6GCBitsZv	00000000 .text._D2gc6gcbits6GCBits4copyMFPS2gc6gcbits6GCBitsZv
+Found symbol uint* gc.gcbits.GCBits.base() in file ./gc/gcbits.o
+	00000000 l    d  .text._D2gc6gcbits6GCBits4baseMFZPk	00000000 .text._D2gc6gcbits6GCBits4baseMFZPk
+Found symbol const(pure nothrow @property @safe core.time.FracSec function()) core.time.Duration.fracSec in file ./core/time.o
+	00000000 l    d  .text._D4core4time8Duration7fracSecMxFNaNbNdNfZS4core4time7FracSec	00000000 .text._D4core4time8Duration7fracSecMxFNaNbNdNfZS4core4time7FracSec
+Found symbol pure nothrow @safe core.time.Duration core.time.Duration.__ctor(long) in file ./core/time.o
+	00000000 l    d  .text._D4core4time8Duration6__ctorMFNaNbNflZS4core4time8Duration	00000000 .text._D4core4time8Duration6__ctorMFNaNbNflZS4core4time8Duration
+Found symbol const(pure nothrow @property @safe int function()) core.time.FracSec.nsecs in file ./core/time.o
+	00000000 l    d  .text._D4core4time7FracSec5nsecsMxFNaNbNdNfZi	00000000 .text._D4core4time7FracSec5nsecsMxFNaNbNdNfZi
+Found symbol runModuleUnitTests in file ./core/runtime.o
+	00000000 l    d  .text.runModuleUnitTests	00000000 .text.runModuleUnitTests
+Found symbol core.exception.AssertError core.exception.AssertError.__ctor(immutable(char)[], immutable(char)[], uint, object.Throwable) in file ./core/exception.o
+	00000000 l    d  .text._D4core9exception11AssertError6__ctorMFAyaAyakC6object9ThrowableZC4core9exception11AssertError	00000000 .text._D4core9exception11AssertError6__ctorMFAyaAyakC6object9ThrowableZC4core9exception11AssertError
+Found symbol onAssertError in file ./core/exception.o
+	00000000 l    d  .text.onAssertError	00000000 .text.onAssertError
+Found symbol onAssertErrorMsg in file ./core/exception.o
+	00000000 l    d  .text.onAssertErrorMsg	00000000 .text.onAssertErrorMsg
+Found symbol onUnittestErrorMsg in file ./core/exception.o
+	00000000 l    d  .text.onUnittestErrorMsg	00000000 .text.onUnittestErrorMsg
+Found symbol onRangeError in file ./core/exception.o
+	00000000 l    d  .text.onRangeError	00000000 .text.onRangeError
+Found symbol onFinalizeError in file ./core/exception.o
+	00000000 l    d  .text.onFinalizeError	00000000 .text.onFinalizeError
+Found symbol onHiddenFuncError in file ./core/exception.o
+	00000000 l    d  .text.onHiddenFuncError	00000000 .text.onHiddenFuncError
+Found symbol onOutOfMemoryError in file ./core/exception.o
+	00000000 l    d  .text.onOutOfMemoryError	00000000 .text.onOutOfMemoryError
+Found symbol onInvalidMemoryOperationError in file ./core/exception.o
+	00000000 l    d  .text.onInvalidMemoryOperationError	00000000 .text.onInvalidMemoryOperationError
+Found symbol onSwitchError in file ./core/exception.o
+	00000000 l    d  .text.onSwitchError	00000000 .text.onSwitchError
+Found symbol onUnicodeError in file ./core/exception.o
+	00000000 l    d  .text.onUnicodeError	00000000 .text.onUnicodeError
+Found symbol @property bool core.cpuid.mmx() in file ./core/cpuid.o
+	00000000 l    d  .text._D4core5cpuid3mmxFNdZb	00000000 .text._D4core5cpuid3mmxFNdZb
+Found symbol @property bool core.cpuid.sse() in file ./core/cpuid.o
+	00000000 l    d  .text._D4core5cpuid3sseFNdZb	00000000 .text._D4core5cpuid3sseFNdZb
+Found symbol @property bool core.cpuid.sse2() in file ./core/cpuid.o
+	00000000 l    d  .text._D4core5cpuid4sse2FNdZb	00000000 .text._D4core5cpuid4sse2FNdZb
+Found symbol @property bool core.cpuid.amd3dnow() in file ./core/cpuid.o
+	00000000 l    d  .text._D4core5cpuid8amd3dnowFNdZb	00000000 .text._D4core5cpuid8amd3dnowFNdZb
+Found symbol thread_init in file ./core/thread.o
+	00000000 l    d  .text.thread_init	00000000 .text.thread_init
+Found symbol thread_joinAll in file ./core/thread.o
+	00000000 l    d  .text.thread_joinAll	00000000 .text.thread_joinAll
+Found symbol thread_needLock in file ./core/thread.o
+	00000000 l    d  .text.thread_needLock	00000000 .text.thread_needLock
+Found symbol thread_suspendAll in file ./core/thread.o
+	00000000 l    d  .text.thread_suspendAll	00000000 .text.thread_suspendAll
+Found symbol thread_resumeAll in file ./core/thread.o
+	00000000 l    d  .text.thread_resumeAll	00000000 .text.thread_resumeAll
+Found symbol thread_scanAll in file ./core/thread.o
+	00000000 l    d  .text.thread_scanAll	00000000 .text.thread_scanAll
+Found symbol thread_processGCMarks in file ./core/thread.o
+	00000000 l    d  .text.thread_processGCMarks	00000000 .text.thread_processGCMarks
+Found symbol void[] core.thread.thread_getTLSBlock() in file ./core/thread.o
+	00000000 l    d  .text._D4core6thread18thread_getTLSBlockFZAv	00000000 .text._D4core6thread18thread_getTLSBlockFZAv
+Found symbol thread_stackBottom in file ./core/thread.o
+	00000000 l    d  .text.thread_stackBottom	00000000 .text.thread_stackBottom
+Found symbol char[] core.demangle.demangle(const(char)[], char[]) in file ./core/demangle.o
+	00000000 l    d  .text._D4core8demangle8demangleFAxaAaZAa	00000000 .text._D4core8demangle8demangleFAxaAaZAa
+
+*****Unresolved symbols******
+
+['_D4core4sync5mutex5Mutex7__ClassZ', 'sem_wait', '_D6object5Error7__ClassZ', '_D14TypeInfo_Const6__vtblZ', '_D2rt4util7console7Console6opCallMFmZS2rt4util7console7Console', 'pthread_mutex_lock', '_D9Exception7__ClassZ', '_D10TypeInfo_k6__initZ', 'strtoul', 'pthread_kill', 'strtoull', '_D6object7__arrayZ', 'fgetc', '_D6object5Error6__ctorMFAyaC6object9ThrowableZC6object5Error', 'mmap64', 'sem_init', 'isspace', '_D6object6Object6toHashMFZk', '_D2rt4util7console7consoleS2rt4util7console7Console', 'read', 'fclose', 'sched_get_priority_min', '_D4core4stdc6stdarg7va_copyFJPvPvZv', '_D14TypeInfo_Const7__ClassZ', 'memcpy', '_D6object6Object8toStringMFZAya', 'backtrace_symbols_fd', 'pthread_attr_setstacksize', '_D15TypeInfo_Struct6__vtblZ', 'memmove', '_pthread_cleanup_push', 'pthread_getschedparam', 'sched_get_priority_max', '_D6object10ModuleInfo4nameMFNaNbNdZAya', 'rt_moduleTlsCtor', '_D4core9exception11AssertError7__ClassZ', '_D11TypeInfo_Ah6__initZ', 'memchr', '_pthread_cleanup_pop', 'clock_gettime', 'snprintf', 'backtrace', 'memset', '_D25TypeInfo_AssociativeArray7__ClassZ', '_D6object9Throwable8toStringMFZAya', 'atexit', 'pthread_create', 'close', '_D4core5cpuid12__ModuleInfoZ', 'pthread_mutexattr_init', '_D6object10ModuleInfo8unitTestMFNaNbNdZPFZv', 'rt_moduleTlsDtor', '_D2rt4util7console7Console6opCallMFxAaZS2rt4util7console7Console', '_D6object8opEqualsFC6ObjectC6ObjectZb', '_D6object6Object8opEqualsMFC6ObjectC6ObjectZb', '_d_monitorexit', 'exit', 'pthread_setspecific', '_Dmodule_ref', 'munmap', '_D2gc3gcx2GC7__ClassZ', 'pthread_detach', '_D2rt4util3utf7toUTF32FxAaZAyw', 'pthread_attr_setdetachstate', '_moduleTlsCtor', 'free', '_D10TypeInfo_a6__initZ', '_D6object10ModuleInfo7opApplyFMDFKPS6object10ModuleInfoZiZi', 'backtrace_symbols', 'sigaction', '_D6object6Object8opEqualsMFC6ObjectZb', '_D2rt4util3utf6decodeFxAaKkZw', '_D13TypeInfo_Enum6__vtblZ', '_D10TypeInfo_C6__initZ', 'pthread_attr_init', '__libc_stack_end', '_moduleTlsDtor', '_D14TypeInfo_Array6__vtblZ', '_D11TypeInfo_Ak6__initZ', '_moduleDtor', '_D4core4stdc6stdarg6va_endFPvZv', '_D10TypeInfo_i6__initZ', '_moduleCtor', '_deh_end', '_D6Object7__ClassZ', '_D2rt4util3utf6toUTF8FJG4awZAa', 'realloc', 'sem_post', '_Dmain', '_D6object9Exception6__ctorMFAyaAyakC6object9ThrowableZC9Exception', 'fopen', 'rt_getTraceHandler', 'pthread_key_create', 'nanosleep', 'qsort', '_D6object6Object5opCmpMFC6ObjectZi', '_D2rt4util6string7dstrcmpFxAaxAaZi', '_D11TypeInfo_Aa6__initZ', '_D6object5Error6__ctorMFAyaAyakC6object9ThrowableZC6object5Error', '_D2rt4util3utf7toUTF32FxAuZAyw', 'memcmp', '_d_traceContext', '_deh_beg', '_D2rt4util6string11intToStringFAakZAa', '_d_monitorenter', '_D16TypeInfo_Pointer6__vtblZ', 'isalpha', '_D15TypeInfo_Shared7__ClassZ', 'pthread_setschedparam', 'pthread_mutex_init', '_D11TypeInfo_Av6__initZ', '_D10TypeInfo_h6__initZ', 'pthread_mutex_unlock', '_D25TypeInfo_AssociativeArray6__vtblZ', '_D2rt4util3utf6encodeFKAawZv', '_D15TypeInfo_Struct7__ClassZ', 'pthread_mutexattr_settype', '_D12TypeInfo_Aya6__initZ', '_D6object9Throwable9TraceInfo11__InterfaceZ', 'pthread_mutex_destroy', '_D18TypeInfo_Invariant6__vtblZ', 'rt_setTraceHandler', '_d_monitordelete', 'malloc', '_D10TypeInfo_w6__initZ', 'sysconf', '_D4core6thread12__ModuleInfoZ', 'strtold', 'sigfillset', 'fprintf', '_D2rt4util3utf6decodeFxAuKkZw', 'clock_getres', 'strlen', '_D10TypeInfo_u6__initZ', 'pthread_getspecific', '_D15TypeInfo_Shared6__vtblZ', 'fabs', '_D2rt4util3utf10UTF8strideyAi', 'write', '_end', '_D6object9Throwable7__ClassZ', 'open64', 'sched_yield', 'sigsuspend', '_D6object8TypeInfo8postblitMFPvZv', '_D4core4sync5mutex5Mutex6__ctorMFZC4core4sync5mutex5Mutex', '_tlsend', 'isgraph', 'pthread_join', 'calloc', '_D4core4time12__ModuleInfoZ', 'sigdelset', '_D14TypeInfo_Class6__vtblZ', '_D2rt4util3utf7toUTF16FG2uwZAu', 'pthread_mutexattr_destroy', '_tlsstart', 'getErrno', 'pthread_self', '__data_start']
