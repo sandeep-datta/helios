@@ -5,6 +5,7 @@ kernel
 *~
 tools/bochsout.txt
 *.sconsign.dblite
+*.pyc
 
 #directories
 tools/dmd/backend/
