@@ -12,6 +12,9 @@ from os.path import join
 
 def SymLink(target, source, env):
     os.symlink(os.path.abspath(str(source[0])), os.path.abspath(str(target[0])))
+    
+    
+
 
 #ENVIRONMENT CREATION
 #Note: We are similating a windows environment since replacing the windows functions will be much easier (for me)
@@ -19,9 +22,10 @@ env32_ut = Environment(CFLAGS=['-m32', '-nostdlib', '-nostdinc', '-fno-builtin',
                        , CXXFLAGS=['-fno-rtti', '-fno-exceptions']
                        , CPPFLAGS=['-Ilib/krt/include']
                        , DFLAGS=['-m32', '-g', '-release', '-nofloat', '-w', '-d', '-Ilib/kruntime/src', '-Ilib/kruntime/import']
-                       , LINKFLAGS=['-m32', '-nostdlib', '-Lout/objs/lib/kruntime'] #-nostdlib will prevent the default crt0 from being linked in
-                       , LIBS = ['kruntime']) #This also removes default libraries from the linker command line
+                       , LINKFLAGS=['-m32', '-nostdlib', '-Lout/objs/lib/kruntime', '-Tsrc/Deimos.ld'] #-nostdlib will prevent the default crt0 from being linked in
+                       , LIBS = ['kruntime']) #This also removes some default libraries (added by scons) from the linker command line
 
+env32_ut.Tool('nasm') #Load the nasm tool to compile .nasm files
 env32 = env32_ut.Clone()
 env32.AppendUnique(DFLAGS='-inline')
 

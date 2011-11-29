@@ -11,5 +11,6 @@ Import("env32 env32_ut")
 #prepare imports first
 
 objs = []
-objs.extend(env32.Object(Glob("src/*/*.d")))
+#HACK:Replace limited depth glob with a more generic version
+objs.extend(env32.Object(Glob("src/*/*/*/*/*.d")))
 env32.StaticLibrary("kruntime", objs)

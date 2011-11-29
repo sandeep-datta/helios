@@ -21,7 +21,7 @@ OBJS=$(patsubst %,$(OUT_DIR)/%,$(_OBJS))
 CFLAGS=-m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -c -g
 CXXFLAGS=$(CFLAGS) -fno-rtti -fno-exceptions
 
-LDFLAGS=-melf_i386 --oformat=elf32-i386 -Tlink.ld -L../lib -L../lib/newlib/lib
+LDFLAGS=-melf_i386 --oformat=elf32-i386 -TDeimos.ld -L../lib -L../lib/newlib/lib
 #LIBS=-lkruntime -lc -lm
 
 #LIBS=-lkruntime
