@@ -1,7 +1,8 @@
 #!/bin/bash
 
-export PATH=$PWD/tools:$PWD/scripts:$PATH
+export PATH=$PWD/tools:$PWD/scripts:$PWD/tools/scons/script:$PATH
 export DEIMOS_BASE=$PWD
+export PYTHONPATH=/home/sandeepd2/Source/osdev/Deimos/tools/scons/engine:$PYTHONPATH
 
 run(){
     qemu -cdrom $DEIMOS_BASE/img/deimos.iso
