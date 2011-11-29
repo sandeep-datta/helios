@@ -11,6 +11,20 @@ Import("env32 env32_ut")
 #prepare imports first
 
 objs = []
-#HACK:Replace limited depth glob with a more generic version
+#HACK:Replace limited depth globs with more generic versions
+objs.extend(env32.Object(Glob("src/*.d")))
+objs.extend(env32.Object(Glob("src/*/*.d")))
+objs.extend(env32.Object(Glob("src/*/*/*.d")))
+objs.extend(env32.Object(Glob("src/*/*/*/*.d")))
 objs.extend(env32.Object(Glob("src/*/*/*/*/*.d")))
+objs.extend(env32.Object(Glob("src/*/*/*/*/*/*.d")))
+
+
+objs.extend(env32.Object(Glob("src/*.c")))
+objs.extend(env32.Object(Glob("src/*/*.c")))
+objs.extend(env32.Object(Glob("src/*/*/*.c")))
+objs.extend(env32.Object(Glob("src/*/*/*/*.c")))
+objs.extend(env32.Object(Glob("src/*/*/*/*/*.c")))
+objs.extend(env32.Object(Glob("src/*/*/*/*/*/*.c")))
 env32.StaticLibrary("kruntime", objs)
+

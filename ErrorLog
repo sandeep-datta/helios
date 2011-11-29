@@ -1,3 +1,13 @@
+-------------
+
+ERROR:
+scons: *** Multiple ways to build the same target were specified for: src/core/stdc/errno.o  (from ['/home/sandeepd2/Source/osdev/Deimos/lib/kruntime/src/core/stdc/errno.d'] and from ['/home/sandeepd2/Source/osdev/Deimos/lib/kruntime/src/core/stdc/errno.c'])
+File "/home/sandeepd2/Source/osdev/Deimos/lib/kruntime/SConscript", line 25, in <module>
+
+RESOLUTION:
+Rename errno.c to errno_.c
+-------------
+
 ERROR:
 dmd -I. -m32 -g -release -nofloat -w -d -Ilib/kruntime/src -Ilib/kruntime/import -inline -c -ofout/objs/lib/kruntime/src/rt/deh.o lib/kruntime/src/rt/deh.d
 lib/kruntime/src/rt/deh.d(910): Error: undefined identifier _d_monitorexit
@@ -7,6 +17,8 @@ lib/kruntime/src/rt/deh.d(946): Error: undefined identifier _d_monitorexit
 RESOLUTION:
 It appears that lib/kruntime/src/rt/deh.d is used to implement D exceptions using the windows SEH mechanism and as such doesn't seem to be terribly important at this time hence it is renamed to deh.d_ to exclude it from the build process
 
+-------------
+
 ERROR:
 dmd -I. -m32 -g -release -nofloat -w -d -Ilib/kruntime/src -Ilib/kruntime/import -inline -c -ofout/objs/lib/kruntime/src/rt/qsort2.o lib/kruntime/src/rt/qsort2.d
 lib/kruntime/src/rt/qsort2.d(40): Error: function core.stdc.stdlib.qsort (void* base, uint nmemb, uint size, extern (C) int function(in const(void*), in const(void*)) compar) is not callable using argument types (void*,uint,uint,extern (C) int function(void* p1, void* p2))
@@ -14,3 +26,5 @@ lib/kruntime/src/rt/qsort2.d(40): Error: cannot implicitly convert expression (&
 
 RESOLUTION:
 It appears that qsort2.d is has a more permissive license than qsort.d and one can be chosen over another hence excluding qsort.d from the build process (qsort.d -> qsort.d_)
+
+-------------
