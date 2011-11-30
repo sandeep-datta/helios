@@ -18,9 +18,9 @@ def SymLink(target, source, env):
 env32_ut = Environment(CFLAGS=['-m32', '-nostdlib', '-nostdinc', '-fno-builtin', '-fno-stack-protector', '-g', '-D_WIN32']
                        , CXXFLAGS=['-fno-rtti', '-fno-exceptions']
                        , CPPFLAGS=['-Ilib/krt/include']
-                       , DFLAGS=['-m32', '-g', '-release', '-nofloat', '-w', '-d', '-Ilib/kruntime/src', '-Ilib/kruntime/import']
-                       , LINKFLAGS=['-m32', '-nostdlib', '-Tsrc/Deimos.ld'] #-nostdlib will prevent the default crt0 from being linked in
-                       , LIBPATH=['out/objs/lib/kruntime'] #This also removes default lib paths set by scons
+                       , DFLAGS=['-m32', '-g', '-release', '-nofloat', '-w', '-d', '-Ilib/kruntime/src', '-Ilib/kruntime/import', '-version=Win32']
+                       , LINKFLAGS=['-m32', '-nostdlib', '-Tsrc/Deimos.ld', '-Lout/objs/lib/kruntime'] #-nostdlib will prevent the default crt0 from being linked in
+                       , LIBPATH=[''] #This also removes default lib paths set by scons
                        , LIBS = ['kruntime']) #This also removes some default libraries (added by scons) from the linker command line
 
 env32_ut.Tool('nasm') #Load the nasm tool to compile .nasm files
@@ -32,7 +32,7 @@ Export("env32 env32_ut")
 #TARGETS
 sub_projects = [
     "src" ,
-    #"lib"
+    "lib"
 ]
 
 out = []
