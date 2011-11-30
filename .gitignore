@@ -6,6 +6,7 @@ kernel
 tools/bochsout.txt
 *.sconsign.dblite
 *.pyc
+scripts/pyawk.py
 
 #directories
 tools/dmd/backend/
