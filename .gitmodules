@@ -1,0 +1,3 @@
+[submodule "tools/dmd"]
+	path = tools/dmd
+	url = git@github.com:SDX2000/dmd.git
