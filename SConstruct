@@ -8,10 +8,10 @@
 #LIBS=-lkruntime
 
 import os
-from os.path import join
+from os import path
 
 def SymLink(target, source, env):
-    os.symlink(os.path.abspath(str(source[0])), os.path.abspath(str(target[0])))
+    os.symlink(path.abspath(str(source[0])), path.abspath(str(target[0])))
     
 #ENVIRONMENT CREATION
 #Note: We are similating a windows environment since replacing the windows functions will be much easier (for me)
@@ -38,8 +38,8 @@ sub_projects = [
 out = []
 
 for project in sub_projects:
-    SConscript(join(project, "SConscript")
-                , variant_dir=join("out/objs", project)
+    SConscript(path.join(project, "SConscript")
+                , variant_dir=path.join("out/objs", project)
                 , duplicate=0)
 
 #Depends("out/objs/kernel", out)
