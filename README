@@ -1,0 +1,8 @@
+SandStorm is an effort in the direction of creating a modern kernel created in a languge with support for superior abstractions.
+
+Please use the following sequence of commands to build and run the kernel in QEMU.
+
+$ cd SandStorm
+$ source envsetup
+$ scons
+$ updateiso

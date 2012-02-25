@@ -1,14 +1,16 @@
 =======
  TODO
 =======
-
+- Rename krt to kcrt
+- Rename kruntime library to druntime library again because it is important to differentiate kernel code from code which is there to support the compiler.
+- Create a new kruntime library containing common modules required by the kernel if required.
+- Remove dependency on the DMD compiler submodule. Always build using the system DMD compiler. Compiler version checks can be performed in the 
+build script if required to guarantee a successful build.
 - Add the scons source to the tools directory and apply changes required to build deimos. Luckily scons doesnt need to be built in the traditional sense and can be used directly so no bootstrapping is required. Make envsetup install scons (if it is not already installed) when it is run for the first time.
 - Find unresolved references in libkruntime and provide implementations for them
-- Reimplement all C files within Deimos/src in D
-- Once we have a working bare kernel using druntime (+ missing crt implementation in libkrt) rework the druntime to remove the need for an underlying C library.
 - Need to update SConscript with ...
     - Additional targets for building and running deimos.iso (corresponding envsetup functions should delegate these targets once this has been implemented)
-    - Build the DMD compiler and use it to build the rest of the system in the event it becomes necessary to customise the DMD compiler (for example to add support for bit fields)
+    
 
 ==========
  REJECTED
@@ -16,7 +18,7 @@
 
 - Compile libdruntime.a with newlib. Decided against taking in newlib as a dependency due to its legacy build system and other quirks. Instead IMO it is better to "lift" code from newlib as and when required (keeping the license in mind ofcourse). But eventually all C code needs to be phased out with equivalent D code.
 
-- Change code in update_image.sh and run_bochs.sh so that root previleges are not required. REASON: This is by design, 
+- Change code in update_image.sh and run_bochs.sh so that root previleges are not required. REASON: By design, 
 non root users cannot mount loopback devices in linux. 
 
 
@@ -37,3 +39,11 @@ for the kernel)
     c. out - the kernel image is generated here
     d. img - disk images are kept here 
 
+=============
+ BACK BURNER
+=============
+
+- Reimplement all C files within Deimos/src in D
+- Once we have a working bare kernel using druntime (+ missing crt implementation in libkrt) rework the druntime to remove the need for an underlying C library.
+
+- Build the DMD compiler and use it to build the rest of the system in the event it becomes necessary to customise the DMD compiler (for example to add support for bit fields)
