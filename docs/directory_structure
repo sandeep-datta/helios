@@ -1,31 +1,31 @@
-SandStorm					//The root folder.
-|-- docs 					//Documentation
-|-- img  					//Bootable images.
-|   `-- grub_files 			//Grub files required for bootstrapping the kernel
-|-- lib  					//Libraries used by the kernel
-|   |-- krt  				//The KernelRuntime (source for libkrt.a). A minimal implementation of the CRT in kernel space. TODO: Rename to kcrt
-|   |   `-- include 		//KRT headers
-|   |-- kruntime 			//A modified version of the druntime library. This is required to support the D compiler.
+SandStorm                   //The root folder.
+|-- docs                    //Documentation
+|-- img                     //Bootable images.
+|   `-- grub_files          //Grub files required for bootstrapping the kernel
+|-- lib                     //Libraries used by the kernel
+|   |-- krt                 //The KernelRuntime (source for libkrt.a). A minimal implementation of the CRT in kernel space. TODO: Rename to kcrt
+|   |   `-- include         //KRT headers
+|   |-- kruntime            //A modified version of the druntime library. This is required to support the D compiler.
 |   |   |-- doc
 |   |   |-- import
 |   |   `-- src
-|   `-- phobos   			//The D language class library
+|   `-- phobos              //The D language class library
 |       |-- etc
 |       `-- std
-|-- out 					//The build ouput folder.
+|-- out                     //The build ouput folder.
 |   `-- objs
 |       `-- lib
-|-- rootfs					//The root file system for the OS.
+|-- rootfs                  //The root file system for the OS.
 |   `-- boot
 |       `-- grub
-|-- scripts					//Some useful scripts
-|-- src						//***The kernel source code!
-`-- tools					//Tools used by the project.
-    |-- dmd					//The D compiler source code. TODO: remove this.
+|-- scripts                 //Some useful scripts
+|-- src                     //***The kernel source code!
+`-- tools                   //Tools used by the project.
+    |-- dmd                 //The D compiler source code. TODO: remove this.
     |   |-- docs
     |   |-- samples
     |   |-- src
     |   `-- test
-    `-- scons				//Code for the SCons build system. Customised for use with D.
+    `-- scons               //Code for the SCons build system. Customised for use with D.
         |-- engine
         `-- script
