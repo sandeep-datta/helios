@@ -7,19 +7,19 @@ from shellutils import *
 from copy import copy
 from pipeline import *
 
-deimos_base = os.environ['DEIMOS_BASE']
+kernel_base = os.environ['KERNEL_BASE']
 
-BUILDD=path.join(deimos_base, "src")
+BUILDD=path.join(kernel_base, "src")
 
-#NewLibDir=path.join(deimos_base, "lib/Bkup/newlib-src")
-NewLibDir=path.join(deimos_base, "lib/Bkup/newlib")
-KrtDir=path.join(deimos_base, "lib/krt")
+#NewLibDir=path.join(kernel_base, "lib/Bkup/newlib-src")
+NewLibDir=path.join(kernel_base, "lib/Bkup/newlib")
+KrtDir=path.join(kernel_base, "lib/krt")
 
 #pdb.run("test1.buildAndGetMissingRefs()")
 def buildAndGetMissingRefs():
     regexMissingRef = re.compile("(.*):.*: undefined reference to \`(.*)\'")
     missingRefs = set()
-    pushd(deimos_base)
+    pushd(kernel_base)
     for line in run("scons"):
         #print line
         m = regexMissingRef.match(line)
@@ -36,7 +36,7 @@ def getMissingHeaderRefs():
     regexMissingFile2 = re.compile(".*: error: no include path in which to search for (.*)")
     
     missingFiles = set()
-    pushd(deimos_base)
+    pushd(kernel_base)
     for line in run("scons"):
         m = regexMissingFile.match(line) or regexMissingFile2.match(line)
         

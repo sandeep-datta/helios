@@ -1,8 +1,8 @@
 -------------
 
 ERROR:
-scons: *** Multiple ways to build the same target were specified for: src/core/stdc/errno.o  (from ['/home/sandeepd2/Source/osdev/Deimos/lib/kruntime/src/core/stdc/errno.d'] and from ['/home/sandeepd2/Source/osdev/Deimos/lib/kruntime/src/core/stdc/errno.c'])
-File "/home/sandeepd2/Source/osdev/Deimos/lib/kruntime/SConscript", line 25, in <module>
+scons: *** Multiple ways to build the same target were specified for: src/core/stdc/errno.o  (from ['/home/sandeepd2/Source/osdev/helios/lib/kruntime/src/core/stdc/errno.d'] and from ['/home/sandeepd2/Source/osdev/helios/lib/kruntime/src/core/stdc/errno.c'])
+File "/home/sandeepd2/Source/osdev/helios/lib/kruntime/SConscript", line 25, in <module>
 
 RESOLUTION:
 Rename errno.c to errno_.c

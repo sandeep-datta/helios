@@ -45,12 +45,12 @@ def popd():
     os.chdir(dirStack[-1])
     dirStack.pop() #it is safe to pop since chdir and access to last element in the stack was successful
 
-deimos_base = os.environ['DEIMOS_BASE']
+kernel_base = os.environ['KERNEL_BASE']
 
 
-KRT_LIBD=join(deimos_base, "out/objs/lib/kruntime")
-KRT_OUTD=join(deimos_base, "out/objs/lib/kruntime/src")
-#KRT_OUTD=join(deimos_base, "out/1")
+KRT_LIBD=join(kernel_base, "out/objs/lib/kruntime")
+KRT_OUTD=join(kernel_base, "out/objs/lib/kruntime/src")
+#KRT_OUTD=join(kernel_base, "out/1")
 
 
 def run(*cmd):
@@ -89,7 +89,7 @@ if len(missingSymbols) == 0:
 
 
 def getDemangledName(symbol):
-    return run(join(deimos_base,"tools/demangle"), symbol)[0]
+    return run(join(kernel_base,"tools/demangle"), symbol)[0]
     
 dsymbols = []
 csymbols = []

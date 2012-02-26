@@ -17,18 +17,18 @@ def popd():
     os.chdir(dirStack[-1])
     dirStack.pop() #it is safe to pop since chdir and access to last element in the stack was successful
 
-deimos_base = os.environ['DEIMOS_BASE']
+kernel_base = os.environ['KERNEL_BASE']
 
-if deimos_base == "":
-    print "DEIMOS_BASE is undefined"
+if kernel_base == "":
+    print "KERNEL_BASE is undefined"
     exit(1)
 
-KRTD=join(deimos_base, "lib/krt")
+KRTD=join(kernel_base, "lib/krt")
 
 SRCD= {
                                         
-    join(deimos_base, "lib/Bkup/newlib-src/newlib/libc") : {"prefix" : ""},
-    join(deimos_base, "lib/Bkup/newlib-src/newlib/libm") : {"prefix" : ""},
+    join(kernel_base, "lib/Bkup/newlib-src/newlib/libc") : {"prefix" : ""},
+    join(kernel_base, "lib/Bkup/newlib-src/newlib/libm") : {"prefix" : ""},
     "/home/sandeepd2/Source/osdev/gcc/build-gcc/gcc/include/" : {"prefix" : "include" }
 }
 
@@ -56,7 +56,7 @@ def run(*cmd):
 def getMissingHeaderFiles():
     regexMissingFile = re.compile(".*fatal error: (.*): No such file or directory")
     missingFiles = []
-    pushd(deimos_base)
+    pushd(kernel_base)
     for line in run("scons"):
         m = regexMissingFile.match(line)
         

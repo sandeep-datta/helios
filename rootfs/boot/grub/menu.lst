@@ -1,5 +1,5 @@
 timeout=0
-title Deimos
+title Helios v0.1
 kernel /kernel
 
 #default=0

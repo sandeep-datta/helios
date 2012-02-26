@@ -1,6 +1,9 @@
 #!/bin/bash
 
-function exit() { kill -SIGINT $$; }
+function exit() { kill -SIGINT $$; } #$$ is the pid for the current process
+
+export KERNEL_NAME=helios
+export KERNEL_BASE=$PWD
 
 _PATH="tools scripts"
 
@@ -11,11 +14,9 @@ do
 		echo "Please run this script from the root directory of the source."
 		exit
 	else
-		export PATH=$PWD/$p:$PATH
+		export PATH=$KERNEL_BASE/$p:$PATH
 	fi	
 done
-
-export KERNEL_BASE=$PWD
 
 SCONSPATH=tools/scons/script
 
@@ -26,13 +27,13 @@ then
 fi
 
 export PATH=$SCONSPATH:$PATH
-export PYTHONPATH=$PWD/tools/scons/engine:$PYTHONPATH
+export PYTHONPATH=$KERNEL_BASE/tools/scons/engine:$PYTHONPATH
 
 run(){
-    qemu -cdrom $KERNEL_BASE/img/deimos.iso
+    qemu -cdrom $KERNEL_BASE/img/$KERNEL_NAME.iso
 }
 
 updateiso(){
 	cp out/kernel rootfs/
-    genisoimage -input-charset default -R -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -boot-info-table -o "$KERNEL_BASE/img/deimos.iso" "$KERNEL_BASE/rootfs"
+    genisoimage -input-charset default -R -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -boot-info-table -o "$KERNEL_BASE/img/$KERNEL_NAME.iso" "$KERNEL_BASE/rootfs"
 }

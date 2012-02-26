@@ -6,10 +6,10 @@
 - Create a new kruntime library containing common modules required by the kernel if required.
 - Remove dependency on the DMD compiler submodule. Always build using the system DMD compiler. Compiler version checks can be performed in the 
 build script if required to guarantee a successful build.
-- Add the scons source to the tools directory and apply changes required to build deimos. Luckily scons doesnt need to be built in the traditional sense and can be used directly so no bootstrapping is required. Make envsetup install scons (if it is not already installed) when it is run for the first time.
+- Add the scons source to the tools directory and apply changes required to build the kernel. Luckily scons doesnt need to be built in the traditional sense and can be used directly so no bootstrapping is required. Make envsetup install scons (if it is not already installed) when it is run for the first time.
 - Find unresolved references in libkruntime and provide implementations for them
 - Need to update SConscript with ...
-    - Additional targets for building and running deimos.iso (corresponding envsetup functions should delegate these targets once this has been implemented)
+    - Additional targets for building and running the iso image (corresponding envsetup functions should delegate these targets once this has been implemented)
     
 
 ==========
@@ -26,7 +26,7 @@ non root users cannot mount loopback devices in linux.
  DONE
 ======
 
-- Generate bootable ISO instead of using a floppy image for Deimos
+- Generate bootable ISO instead of using a floppy image for the kernel
 
 - Link kernel with libdruntime.d and remove the _Dmodule_ref kludge (note libdruntime has been renamed to libkruntime)
 
@@ -43,7 +43,7 @@ for the kernel)
  BACK BURNER
 =============
 
-- Reimplement all C files within Deimos/src in D
+- Reimplement all C files within src/ in D
 - Once we have a working bare kernel using druntime (+ missing crt implementation in libkrt) rework the druntime to remove the need for an underlying C library.
 
 - Build the DMD compiler and use it to build the rest of the system in the event it becomes necessary to customise the DMD compiler (for example to add support for bit fields)

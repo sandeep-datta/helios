@@ -20,12 +20,12 @@ def popd():
     os.chdir(dirStack[-1])
     dirStack.pop() #it is safe to pop since chdir and access to last element in the stack was successful
 
-deimos_base = os.environ['DEIMOS_BASE']
+kernel_base = os.environ['KERNEL_BASE']
 
-BUILDD=join(deimos_base, "src")
+BUILDD=join(kernel_base, "src")
 
-NLD=join(deimos_base, "lib/Bkup/newlib-src")
-KRTD_OUT=join(deimos_base, "/home/sandeepd2/Source/osdev/Deimos/lib")
+NLD=join(kernel_base, "lib/Bkup/newlib-src")
+KRTD_OUT=join(kernel_base, "lib")
 
 def run(*cmd):
     l=[]
@@ -57,7 +57,7 @@ def buildAndGetMissingRefs():
 pushd(BUILDD)
 missingRefs = buildAndGetMissingRefs()
 for ref in missingRefs:
-    demangledName = run(join(deimos_base,"tools/demangle"), ref)[0]
+    demangledName = run(join(kernel_base,"tools/demangle"), ref)[0]
     if demangledName == ref:
         print "Missing ref: ", ref #could not demangle print as is
     else:

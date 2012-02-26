@@ -19,7 +19,7 @@ env32_ut = Environment(CFLAGS=['-m32', '-nostdlib', '-nostdinc', '-fno-builtin',
                        , CXXFLAGS=['-fno-rtti', '-fno-exceptions']
                        , CPPFLAGS=['-Ilib/krt/libc/include']
                        , DFLAGS=['-m32', '-g', '-release', '-nofloat', '-w', '-d', '-Ilib/kruntime/src', '-Ilib/kruntime/import']
-                       , LINKFLAGS=['-m32', '-nostdlib', '-Tsrc/Deimos.ld', '-Lout/objs/lib/kruntime', '-Lout/objs/lib/krt'] #-nostdlib will prevent the default crt0 from being linked in
+                       , LINKFLAGS=['-m32', '-nostdlib', '-Tsrc/kernel.ld', '-Lout/objs/lib/kruntime', '-Lout/objs/lib/krt'] #-nostdlib will prevent the default crt0 from being linked in
                        , LIBPATH=[''] #This also removes default lib paths set by scons
                        , LIBS = ['kruntime', 'krt']) #This also removes some default libraries (added by scons) from the linker command line
 

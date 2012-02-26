@@ -5,6 +5,7 @@ import shutil
 from pipeline import *
 import os
 import pprint
+from os import path
 
 from os import chdir
 
@@ -18,9 +19,14 @@ def run(*cmd):
     
     #print "l:", l
     return subprocess.Popen(l, stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()[0].split("\n")
+
+kernel_base = os.environ['KERNEL_BASE']
+
+if kernel_base == "":
+    print "KERNEL_BASE is undefined"
+    exit(1)
     
-    
-NLD="/home/sandeepd2/Desktop/Deimos/tools/lib/newlib-src/newlib"
+NLD = path.join(kernel_base, "tools/lib/newlib-src/newlib")
 chdir(NLD)
 options = set()
 
