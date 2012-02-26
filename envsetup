@@ -1,13 +1,37 @@
 #!/bin/bash
 
-export PATH=$PWD/tools:$PWD/scripts:$PWD/tools/scons/script:$PATH
-export DEIMOS_BASE=$PWD
-export PYTHONPATH=/home/sandeepd2/Source/osdev/Deimos/tools/scons/engine:$PYTHONPATH
+function exit() { kill -SIGINT $$; }
+
+_PATH="tools scripts"
+
+for p in $_PATH
+do
+	if [[ ! -e $p ]]
+	then
+		echo "Please run this script from the root directory of the source."
+		exit
+	else
+		export PATH=$PWD/$p:$PATH
+	fi	
+done
+
+export KERNEL_BASE=$PWD
+
+SCONSPATH=tools/scons/script
+
+if [[ ! -e $SCONSPATH ]]
+then
+	git submodule init
+	git submodule update
+fi
+
+export PATH=$SCONSPATH:$PATH
+export PYTHONPATH=$PWD/tools/scons/engine:$PYTHONPATH
 
 run(){
-    qemu -cdrom $DEIMOS_BASE/img/deimos.iso
+    qemu -cdrom $KERNEL_BASE/img/deimos.iso
 }
 
 updateiso(){
-    genisoimage -input-charset default -R -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -boot-info-table -o "$DEIMOS_BASE/img/deimos.iso" "$DEIMOS_BASE/rootfs"
+    genisoimage -input-charset default -R -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -boot-info-table -o "$KERNEL_BASE/img/deimos.iso" "$KERNEL_BASE/rootfs"
 }
