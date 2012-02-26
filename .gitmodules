@@ -1,6 +1,3 @@
-[submodule "tools/dmd"]
-	path = tools/dmd
-	url = git@github.com:SDX2000/dmd.git
 [submodule "tools/scons"]
 	path = tools/scons
 	url = git@github.com:SDX2000/scons.git
