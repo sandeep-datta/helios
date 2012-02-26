@@ -1,0 +1,1 @@
+void *_Dmodule_ref = (void*)0;
