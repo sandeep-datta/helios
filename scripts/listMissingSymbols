@@ -2,7 +2,7 @@
 import subprocess
 import re
 import shutil
-from pipeline import *
+#from pipeline import *
 import os
 from os.path import join
 
@@ -14,7 +14,7 @@ dirStack = []
 def pushd(path):
     curDir = os.getcwd()
     os.chdir(os.path.abspath(path))
-    dirStack.append(os.path.abspath(path)) #it is safe to push the old value to the stack since chdir was successful
+    dirStack.append(os.path.abspath(curDir)) #it is safe to push the old value to the stack since chdir was successful
     
 def popd():
     os.chdir(dirStack[-1])
@@ -42,11 +42,11 @@ def run(*cmd):
 def buildAndGetMissingRefs():
     regexMissingRef = re.compile("(.*):.*: undefined reference to \`(.*)\'")
     missingRefs = set()
-    for line in run("make"):
+    for line in run("scons"):
         m = regexMissingRef.match(line)
         
         if m is not None:
-            #print "Make file error:", line
+            print "Make file error:", line
             #missingRefs.append(m.groups())
             missingRefs.add(m.groups()[1])
     return missingRefs

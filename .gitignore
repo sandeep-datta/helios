@@ -9,6 +9,7 @@ tools/bochsout.txt
 scripts/pyawk.py
 
 #directories
+_*/
 tools/dmd/backend/
 lib/Bkup/
 out/

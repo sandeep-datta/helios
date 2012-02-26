@@ -2,7 +2,7 @@
 import subprocess
 import re
 import shutil
-from pipeline import *
+#from pipeline import *
 import os
 
 from os.path import join
@@ -39,7 +39,7 @@ dirStack = []
 def pushd(path):
     curDir = os.getcwd()
     os.chdir(os.path.abspath(path))
-    dirStack.append(os.path.abspath(path)) #it is safe to push the old value to the stack since chdir was successful
+    dirStack.append(os.path.abspath(curDir)) #it is safe to push the old value to the stack since chdir was successful
     
 def popd():
     os.chdir(dirStack[-1])

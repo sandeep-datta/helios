@@ -4,6 +4,7 @@ from os.path import join
 #TARGETS
 sub_projects = [
     "kruntime",
+    "krt"
 ]
 
 #out = []

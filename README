@@ -6,3 +6,4 @@ $ cd SandStorm
 $ source envsetup
 $ scons
 $ updateiso
+$ run

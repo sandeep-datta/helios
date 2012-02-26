@@ -11,7 +11,7 @@ dirStack = []
 def pushd(path):
     curDir = os.getcwd()
     os.chdir(os.path.abspath(path))
-    dirStack.append(os.path.abspath(path)) #it is safe to push the old value to the stack since chdir was successful
+    dirStack.append(os.path.abspath(curDir)) #it is safe to push the old value to the stack since chdir was successful
     
 def popd():
     os.chdir(dirStack[-1])
@@ -53,7 +53,7 @@ def run(*cmd):
     return subprocess.Popen(l, stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()[0].split("\n")
 
 
-def getMissingFiles():
+def getMissingHeaderFiles():
     regexMissingFile = re.compile(".*fatal error: (.*): No such file or directory")
     missingFiles = []
     pushd(deimos_base)
@@ -68,62 +68,77 @@ def getMissingFiles():
     return missingFiles
     
 
+def fixMissingHeaderFiles():
+    while True:
+        #print "Entering:", KRTD
+        pushd(KRTD)
 
-while True:
-    #print "Entering:", KRTD
-    pushd(KRTD)
+        #Create a list of missing files
+        missingFiles = getMissingHeaderFiles()
 
-    #Create a list of missing files
-    missingFiles = getMissingFiles()
-
-    if len(missingFiles) == 0:
-        break
-        
-    print "Missing files: ", missingFiles
-
-    #print "Entering:", NLD
-
-    files = []
-    for d in SRCD.keys():
-        files.extend(run("find " + d))
-
-    #print files
-
-    chosenSubst = {}
-
-    for mf in missingFiles:
-        subst = files | grep("/"+ mf + "$") | tuple
-        
-        
-        if len(subst) == 0:
-            print "ERROR: could not find file - ", "/"+ mf + "$"
-            continue
-        
-        if(len(subst) > 1):
-            print "Please choose substitute file from :-"
-            for i, s in enumerate(subst):
-                print i+1, ". ", s
+        if len(missingFiles) == 0:
+            break
             
-            inp = int(raw_input())
-            chosenSubst[mf] = subst[inp - 1]
-        else:
-            chosenSubst[mf] = subst[0]
+        print "Missing files: ", missingFiles
 
-    for orig, subst in chosenSubst.items():
-        #print "shutil.copytree("+os.path.join(NLD , subst)+", "+KRTD+")"
-        #src=os.path.join(NLD , subst)
-        
-        destDir = getTargetDir(subst)
-        
-        print "destDir:", destDir
-        
-        if not os.path.exists(destDir):
-            print "Making dir: ", destDir
-            os.makedirs(destDir)
-        
-        print "Copying file: %s to %s" % (subst, destDir) 
-        shutil.copy(subst, destDir)
-    
-    print ""
+        #print "Entering:", NLD
 
-print "Done!"
+        files = []
+        for d in SRCD.keys():
+            files.extend(run("find " + d))
+
+        #print files
+
+        chosenSubst = {}
+
+        for mf in missingFiles:
+            subst = files | grep("/"+ mf + "$") | tuple
+            
+            
+            if len(subst) == 0:
+                print "ERROR: could not find file - ", "/"+ mf + "$"
+                continue
+            
+            if(len(subst) > 1):
+                print "Please choose substitute file from :-"
+                for i, s in enumerate(subst):
+                    print i+1, ". ", s
+                
+                inp = int(raw_input())
+                chosenSubst[mf] = subst[inp - 1]
+            else:
+                chosenSubst[mf] = subst[0]
+
+        for orig, subst in chosenSubst.items():
+            #print "shutil.copytree("+os.path.join(NLD , subst)+", "+KRTD+")"
+            #src=os.path.join(NLD , subst)
+            
+            destDir = getTargetDir(subst)
+            
+            print "destDir:", destDir
+            
+            if not os.path.exists(destDir):
+                print "Making dir: ", destDir
+                os.makedirs(destDir)
+            
+            print "Copying file: %s to %s" % (subst, destDir) 
+            shutil.copy(subst, destDir)
+        
+        print ""
+
+
+def buildAndGetMissingRefs():
+    regexMissingRef = re.compile("(.*):.*: undefined reference to \`(.*)\'")
+    missingRefs = set()
+    for line in run("make"):
+        m = regexMissingRef.match(line)
+        
+        if m is not None:
+            #print "Make file error:", line
+            #missingRefs.append(m.groups())
+            missingRefs.add(m.groups()[1])
+    return missingRefs
+
+if __name__ == "__main__":
+    fixMissingHeaderFiles()
+    print "Done!"
