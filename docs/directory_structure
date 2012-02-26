@@ -1,4 +1,4 @@
-SandStorm                   //The root folder.
+.                           //The root folder.
 |-- docs                    //Documentation
 |-- img                     //Bootable images.
 |   `-- grub_files          //Grub files required for bootstrapping the kernel
