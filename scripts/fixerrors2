@@ -1,0 +1,143 @@
+#!/usr/bin/python
+import re
+import os
+from os import path
+from pprint import pprint
+from shellutils import *
+from copy import copy
+from pipeline import *
+
+deimos_base = os.environ['DEIMOS_BASE']
+
+BUILDD=path.join(deimos_base, "src")
+
+#NewLibDir=path.join(deimos_base, "lib/Bkup/newlib-src")
+NewLibDir=path.join(deimos_base, "lib/Bkup/newlib")
+KrtDir=path.join(deimos_base, "lib/krt")
+
+#pdb.run("test1.buildAndGetMissingRefs()")
+def buildAndGetMissingRefs():
+    regexMissingRef = re.compile("(.*):.*: undefined reference to \`(.*)\'")
+    missingRefs = set()
+    pushd(deimos_base)
+    for line in run("scons"):
+        #print line
+        m = regexMissingRef.match(line)
+        
+        if m is not None:
+            #print "Make file error:", line
+            #missingRefs.append(m.groups())
+            missingRefs.add(m.groups()[1])
+    popd()
+    return missingRefs
+
+def getMissingHeaderRefs():
+    regexMissingFile = re.compile(".*fatal error: (.*): No such file or directory")
+    regexMissingFile2 = re.compile(".*: error: no include path in which to search for (.*)")
+    
+    missingFiles = set()
+    pushd(deimos_base)
+    for line in run("scons"):
+        m = regexMissingFile.match(line) or regexMissingFile2.match(line)
+        
+        if m is not None:
+            #print "Make file error:", line
+            missingFiles.add(m.groups()[0])
+    
+    popd()
+    return missingFiles
+
+def findSourceFiles():
+    pushd(NewLibDir)
+    #find . -name "*.c*" | xargs grep "_DEFUN[ ]*(<symbol_name>"
+    #try to find C implementation files for the missing symbols if possible
+    missingRefs = buildAndGetMissingRefs()
+    resolved = {}
+    for symb in copy(missingRefs):
+        r1 = re.compile("_DEFUN\s*\(" + symb)
+        r2 = re.compile("weak_alias\s*\(.*"+symb)
+        for fname in run("find . -name *.c*"):
+            if os.path.exists(fname):
+                f = open(fname, 'r')
+                s = f.read()
+                if r1.search(s) or r2.search(s):
+                    fpath = path.join(NewLibDir, fname)
+                    print "Symbol: \"" + symb + "\" found in: ", fpath
+                    if not symb in resolved:
+                        resolved[symb] = []
+
+                    resolved[symb].append(fpath)
+                    if symb in missingRefs:
+                        missingRefs.remove(symb)
+    popd()
+    return resolved, missingRefs
+
+def findHeaderFiles():
+    pushd(NewLibDir)
+    #find . -name "*.c*" | xargs grep "_DEFUN[ ]*(<symbol_name>"
+    #try to find C implementation files for the missing symbols if possible
+    missingRefs = getMissingHeaderRefs()
+    #pprint(missingRefs)
+    resolved = {}
+    for headerfile in copy(missingRefs):
+        for fname in run("find . -name " + path.basename(headerfile)):
+            if os.path.exists(fname):
+                if not headerfile in resolved:
+                    resolved[headerfile] = []
+                fpath = path.join(NewLibDir, fname)
+                resolved[headerfile].append(fpath)
+                if headerfile in missingRefs:
+                    missingRefs.remove(headerfile)
+    popd()
+    return resolved, missingRefs
+
+def copyMissingFiles(resolved):
+    for symb, files in resolved.items():
+        relpath = ""
+        fpath = ""
+        if len(files) > 1:
+            print "Please choose a file from the following list to resolve symbol %s" % symb
+            for i, f in enumerate(files):
+                print "%s) %s" % (i+1, f)
+            inp = int(raw_input())
+            relpath = path.relpath(files[inp-1], NewLibDir)
+            fpath = files[inp-1]
+        else:
+            print "Symbol:", symb
+            relpath = path.relpath(files[0], NewLibDir)
+            fpath = files[0]
+
+        destDir = path.join(KrtDir, path.dirname(relpath))
+        if not path.exists(destDir):
+            print "Making dir: ", destDir
+            os.makedirs(destDir)
+
+        print "Copying file %s to %s" % (fpath, destDir)
+        shutil.copy(fpath, destDir)
+
+
+
+if __name__ == "__main__":
+	#pprint(buildAndGetMissingRefs())
+    while True:
+        resolved1, unresolved = findHeaderFiles()
+
+        #pprint(resolved)
+
+        copyMissingFiles(resolved1)
+
+        if unresolved:
+            print "The following header files could not be resolved..."
+            for n in unresolved:
+                print n
+
+        resolved2, unresolved = findSourceFiles()
+        copyMissingFiles(resolved2)
+
+        if unresolved:
+            print "The following symbols could not be resolved..."
+            for n in unresolved:
+                print n
+        if not (resolved1 or resolved2):
+            break
+    print "Done!"
