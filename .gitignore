@@ -13,4 +13,9 @@ _*/
 tools/dmd/backend/
 lib/Bkup/
 out/
-img/
+#Do not ignore the img folder itself
+!img/
+#but ignore everything inside it
+img/*
+#but let gurb_files be unignored!
+!img/grub_files/

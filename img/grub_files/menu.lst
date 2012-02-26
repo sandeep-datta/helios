@@ -1,0 +1,9 @@
+default=0
+timeout=30
+title Puppy Linux
+color light-green/brown blink-red/blue
+splashimage=(hd0,0)/boot/grub/splash.xpm.gz
+foreground bbbbbb
+background 000000
+root (hd0,0)
+kernel /vmlinuz root=/dev/hda2
